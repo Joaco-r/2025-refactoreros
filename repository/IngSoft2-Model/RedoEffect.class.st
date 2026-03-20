@@ -5,7 +5,7 @@ When used in a card, can be played out of turn to mimic the effect of the last p
 "
 Class {
 	#name : 'RedoEffect',
-	#superclass : 'Object',
+	#superclass : 'CardEffect',
 	#instVars : [
 		'targetShip',
 		'targetCardName'
@@ -26,28 +26,9 @@ RedoEffect class >> targetedTo: aTargetPlayer [
 ]
 
 { #category : 'actions' }
-RedoEffect >> applyMercenaryEffectFor: aShip in: aListMercenaries from: cardOwner [
-]
-
-{ #category : 'actions' }
 RedoEffect >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
 
 	aGame applyRedoTo: aTargetShip from: owner whoPlayed: targetCardName
-]
-
-{ #category : 'actions' }
-RedoEffect >> applyThrowEffectFor: aShip [
-	^ 0
-	
-]
-
-{ #category : 'as yet unclassified' }
-RedoEffect >> checkForTargetRequirementsFor: aTargetShip whoPlayed: aTargetCardName [
-
-]
-
-{ #category : 'as yet unclassified' }
-RedoEffect >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: anotherShip [
 ]
 
 { #category : 'testing' }
@@ -67,11 +48,6 @@ RedoEffect >> intializeTargetedTo: aTargetShip whoPlayed: aTargetCardName [
 RedoEffect >> isCalled: aName [
 
 	^ 'Redo Card' = aName
-]
-
-{ #category : 'as yet unclassified' }
-RedoEffect >> targetTo: aTargetShip [
-	^ self class targetedTo: aTargetShip
 ]
 
 { #category : 'as yet unclassified' }

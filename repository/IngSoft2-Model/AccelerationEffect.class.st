@@ -3,7 +3,7 @@ When used in a card, permanently increases the total die roll of all ships by 1 
 "
 Class {
 	#name : 'AccelerationEffect',
-	#superclass : 'Object',
+	#superclass : 'CardEffect',
 	#instVars : [
 		'accelerationValue'
 	],
@@ -18,22 +18,8 @@ AccelerationEffect class >> ofValue: anAccelerationValue [
 ]
 
 { #category : 'actions' }
-AccelerationEffect >> applyMercenaryEffectFor: aShip in: aListMercenaries from: cardOwner [
-
-]
-
-{ #category : 'actions' }
-AccelerationEffect >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
-]
-
-{ #category : 'actions' }
 AccelerationEffect >> applyThrowEffectFor: aShip [
 	^ 1
-]
-
-{ #category : 'as yet unclassified' }
-AccelerationEffect >> checkForTargetRequirementsFor: aTargetShip whoPlayed: aTargetCardName [
-
 ]
 
 { #category : 'as yet unclassified' }
@@ -59,12 +45,6 @@ AccelerationEffect >> initializeWith: anAccelerationValue [
 AccelerationEffect >> isCalled: aName [
 
 	^ 'Acceleration Card' = aName
-]
-
-{ #category : 'as yet unclassified' }
-AccelerationEffect >> targetTo: aTargetShip [
-
-	^ self
 ]
 
 { #category : 'as yet unclassified' }

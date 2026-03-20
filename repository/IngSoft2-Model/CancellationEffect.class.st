@@ -3,7 +3,7 @@ When used in a card, can be played out of turn to remove an active permanent car
 "
 Class {
 	#name : 'CancellationEffect',
-	#superclass : 'Object',
+	#superclass : 'CardEffect',
 	#instVars : [
 		'targetShip',
 		'targetCardName'
@@ -19,18 +19,8 @@ CancellationEffect class >> targetTo: aTargetShip whoPlayed: aTargetCardName [
 ]
 
 { #category : 'actions' }
-CancellationEffect >> applyMercenaryEffectFor: aShip in: aListMercenaries from: cardOwner [
-]
-
-{ #category : 'actions' }
 CancellationEffect >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
 	aGame applyCancellationTo: targetShip whoPlayed: targetCardName
-]
-
-{ #category : 'actions' }
-CancellationEffect >> applyThrowEffectFor: aShip [
-	^ 0
-	
 ]
 
 { #category : 'as yet unclassified' }
@@ -41,10 +31,6 @@ CancellationEffect >> checkForTargetRequirementsFor: aTargetShip whoPlayed: aTar
 
 	aTargetCardName ifEmpty: [
 		Error signal: 'Cancellation Card requiers a target card.' ]
-]
-
-{ #category : 'as yet unclassified' }
-CancellationEffect >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: anotherShip [
 ]
 
 { #category : 'testing' }

@@ -3,7 +3,7 @@ When used in a card, can be played out of turn to reapply the last effect used i
 "
 Class {
 	#name : 'RepeatEffect',
-	#superclass : 'Object',
+	#superclass : 'CardEffect',
 	#instVars : [
 		'targetShip'
 	],
@@ -18,18 +18,9 @@ RepeatEffect class >> targetedTo: aTargetPlayer [
 ]
 
 { #category : 'actions' }
-RepeatEffect >> applyMercenaryEffectFor: aShip in: aListMercenaries from: cardOwner [
-]
-
-{ #category : 'actions' }
 RepeatEffect >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
 
 	aGame applyRepeatTo: aTargetShip
-]
-
-{ #category : 'actions' }
-RepeatEffect >> applyThrowEffectFor: aShip [
-	^ 0
 ]
 
 { #category : 'as yet unclassified' }
@@ -37,10 +28,6 @@ RepeatEffect >> checkForTargetRequirementsFor: aTargetShip whoPlayed: aTargetCar
 
 	aTargetShip isAValidTargetShip ifFalse: [
 		Error signal: 'Repeat Card requiers a target ship.' ].
-]
-
-{ #category : 'as yet unclassified' }
-RepeatEffect >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: anotherShip [
 ]
 
 { #category : 'testing' }
@@ -59,11 +46,6 @@ RepeatEffect >> intializeTargetedTo: aTargetPlayer [
 RepeatEffect >> isCalled: aName [
 
 	^ 'Repeat Card' = aName
-]
-
-{ #category : 'as yet unclassified' }
-RepeatEffect >> targetTo: aTargetShip [
-	^ self class targetedTo: aTargetShip
 ]
 
 { #category : 'as yet unclassified' }

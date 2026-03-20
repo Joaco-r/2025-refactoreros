@@ -3,7 +3,7 @@ When used in a card, permanently increases the total die roll of a selected ship
 "
 Class {
 	#name : 'SpeedEffect',
-	#superclass : 'Object',
+	#superclass : 'CardEffect',
 	#instVars : [
 		'targetShip',
 		'speedValue'
@@ -17,14 +17,6 @@ Class {
 SpeedEffect class >> ofValue: aSpeedValue targetedTo: aTarget [
 
 	^ self new initializeWithSpeedValue: aSpeedValue and: aTarget
-]
-
-{ #category : 'actions' }
-SpeedEffect >> applyMercenaryEffectFor: aShip in: aListMercenaries from: cardOwner [
-]
-
-{ #category : 'actions' }
-SpeedEffect >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
 ]
 
 { #category : 'actions' }
@@ -65,12 +57,6 @@ SpeedEffect >> initializeWithSpeedValue: aSpeedValue and: aTargetShip [
 SpeedEffect >> isCalled: aName [
 
 	^ 'Speed Card' = aName
-]
-
-{ #category : 'as yet unclassified' }
-SpeedEffect >> targetTo: aTargetShip [
-
-	^ self class ofValue: speedValue targetedTo: aTargetShip
 ]
 
 { #category : 'as yet unclassified' }
