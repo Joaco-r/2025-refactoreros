@@ -1,3 +1,6 @@
+"
+When used in a card, can be played out of turn to remove an active permanent card from the game
+"
 Class {
 	#name : 'CancellationEffect',
 	#superclass : 'Object',

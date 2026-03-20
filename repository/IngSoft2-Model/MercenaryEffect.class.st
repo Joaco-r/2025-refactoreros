@@ -1,5 +1,5 @@
 "
-When used in a permanent card allows the ship to hire a mercenary ship as an ally
+When used in a card, permanently allows the ship to hire a mercenary ship as an ally
 "
 Class {
 	#name : 'MercenaryEffect',

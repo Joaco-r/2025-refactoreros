@@ -41,7 +41,7 @@ Ship >> breakAShield [
 { #category : 'accessing' }
 Ship >> cardsInHand [
 
-	^ cardsInHand collect: [ :card | card name ]
+	^ cardsInHand collect: [ :card | card ]
 ]
 
 { #category : 'actions' }

@@ -4,9 +4,9 @@ Represents the absence of a card
 Class {
 	#name : 'NullCard',
 	#superclass : 'Object',
-	#category : 'IngSoft2-Model-Card-NonPermanent',
+	#category : 'IngSoft2-Model-Card',
 	#package : 'IngSoft2-Model',
-	#tag : 'Card-NonPermanent'
+	#tag : 'Card'
 }
 
 { #category : 'checking' }

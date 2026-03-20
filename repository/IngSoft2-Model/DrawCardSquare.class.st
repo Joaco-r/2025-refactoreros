@@ -14,12 +14,12 @@ DrawCardSquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: a
 
 	| allCards |
 	allCards := {
-		            SpeedCard new.
-		            MercenaryCard new.
-		            AccelerationCard new.
-		            CancellationCard new.
-		            RedoCard new.
-		            RepeatCard new }.
+		            Card speedWithoutOwner.
+		            Card mercenaryWithoutOwner .
+		            Card accelerationWithoutOwner.
+		            Card cancellationWithoutOwner.
+		            Card redoWithoutOwner.
+		            Card repeatWithoutOwner }.
 		
 	aShip drawCard: allCards atRandom deepCopy
 ]

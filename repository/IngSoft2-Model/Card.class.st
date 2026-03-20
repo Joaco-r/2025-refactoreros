@@ -1,3 +1,6 @@
+"
+A Card with an effect that can be played in game
+"
 Class {
 	#name : 'Card',
 	#superclass : 'Object',

@@ -765,11 +765,11 @@ GameTest >> testC03WhenAShipPlaysAccelerationCardAndAllShipsIncrementTheirDiceRo
 
 	aDeckOfCards := {
 		                Card accelerationWithoutOwner .
-		                AccelerationCard withoutOwner.
-		                AccelerationCard withoutOwner.
-		                AccelerationCard withoutOwner.
-		                AccelerationCard withoutOwner.
-		                AccelerationCard withoutOwner } asOrderedCollection.
+		                Card accelerationWithoutOwner.
+		                Card accelerationWithoutOwner.
+		                Card accelerationWithoutOwner.
+		                Card accelerationWithoutOwner.
+		                Card accelerationWithoutOwner } asOrderedCollection.
 	aGame := Game
 		         gamePlayedBy: shipNames
 		         on: aBoard
@@ -949,8 +949,8 @@ GameTest >> testC08WhenACancellationCardIsPlayedAndTheTargetCardIsNotActiveThenI
 	shipNames := #( 'Player 1' 'Player 2' ).
 
 	aDeckOfCards := {
-		                SpeedCard withoutOwner.
-		                SpeedCard withoutOwner.
+		                Card speedWithoutOwner .
+		                Card speedWithoutOwner .
 		                Card cancellationWithoutOwner.
 		                Card cancellationWithoutOwner } asOrderedCollection.
 
@@ -991,8 +991,8 @@ GameTest >> testC09WhenACancellationCardTargetsANonPermanentCardThenItFails [
 	shipNames := #( 'Player 1' 'Player 2' ).
 
 	aDeckOfCards := {
-		                SpeedCard withoutOwner.
-		                SpeedCard withoutOwner.
+		                Card speedWithoutOwner .
+		                Card speedWithoutOwner .
 		                Card cancellationWithoutOwner.
 		                Card cancellationWithoutOwner } asOrderedCollection.
 

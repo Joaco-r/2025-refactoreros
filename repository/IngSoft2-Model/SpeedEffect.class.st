@@ -1,5 +1,5 @@
 "
-When used in a permanent card, it increases the total die roll of a selected ship by 1 (affects the total result, not individual die values)
+When used in a card, permanently increases the total die roll of a selected ship by 1 (affects the total result, not individual die values)
 "
 Class {
 	#name : 'SpeedEffect',

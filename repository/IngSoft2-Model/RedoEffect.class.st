@@ -1,3 +1,8 @@
+"
+When used in a card, can be played out of turn to mimic the effect of the last played card, regardless of its type (instant or permanent)
+
+
+"
 Class {
 	#name : 'RedoEffect',
 	#superclass : 'Object',

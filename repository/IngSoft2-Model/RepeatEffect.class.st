@@ -1,3 +1,6 @@
+"
+When used in a card, can be played out of turn to reapply the last effect used in the game to a selected ship
+"
 Class {
 	#name : 'RepeatEffect',
 	#superclass : 'Object',
