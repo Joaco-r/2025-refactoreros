@@ -1963,3 +1963,161 @@ GameTest >> testC32WhenAShipUsesRedoCardAfterAMercenaryCardAndTwoShipsHelpInBatt
 
 	self assert: (aGame shieldfOf: 'Player 4') equals: 2
 ]
+
+{ #category : 'tests' }
+GameTest >> testC33WhenASpeedCardIsPlayedWithoutATargetShipThenItFails [ 
+	| aGame dice squareGenerator shipNames aBoard aBoardSize aDeckOfCards |
+	aBoardSize := 10.
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 3 5 7 )).
+	squareGenerator := SquareGenerator withOnlyEmptySquares.
+	aBoard := Board
+		          populatedBy: squareGenerator
+		          anAmountOf: aBoardSize
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1').
+
+	aDeckOfCards := {
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+
+	self
+		should: [ aGame throw: 'Speed Card' from: 'Player 1' ]
+		raise: Error
+		withMessageText: 'Speed Card requiers a target ship.'
+]
+
+{ #category : 'tests' }
+GameTest >> testC34WhenAMercenaryCardIsPlayedWithoutATargetShipThenItFails [
+	| aGame dice squareGenerator shipNames aBoard aBoardSize aDeckOfCards |
+	aBoardSize := 10.
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 3 5 7 )).
+	squareGenerator := SquareGenerator withOnlyEmptySquares.
+	aBoard := Board
+		          populatedBy: squareGenerator
+		          anAmountOf: aBoardSize
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1').
+
+	aDeckOfCards := {
+		                Card mercenaryWithoutOwner .
+		                Card mercenaryWithoutOwner } asOrderedCollection.
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+
+	self
+		should: [ aGame throw: 'Mercenary Card' from: 'Player 1' ]
+		raise: Error
+		withMessageText: 'Mercenary Card requiers a target ship.'
+]
+
+{ #category : 'tests' }
+GameTest >> testC35WhenACancellationCardIsPlayedWithoutATargetShipThenItFails [
+	| aGame dice squareGenerator shipNames aBoard aBoardSize aDeckOfCards |
+	aBoardSize := 10.
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 3 5 7 )).
+	squareGenerator := SquareGenerator withOnlyEmptySquares.
+	aBoard := Board
+		          populatedBy: squareGenerator
+		          anAmountOf: aBoardSize
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1').
+
+	aDeckOfCards := {
+		                Card cancellationWithoutOwner .
+		                Card cancellationWithoutOwner } asOrderedCollection.
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+
+	self
+		should: [ aGame throw: 'Cancellation Card' from: 'Player 1' ]
+		raise: Error
+		withMessageText: 'Cancellation Card requiers a target ship.'
+]
+
+{ #category : 'tests' }
+GameTest >> testC36WhenACancellationCardIsPlayedWithoutATargetCardThenItFails [
+
+	| aGame dice squareGenerator shipNames aBoard aBoardSize aDeckOfCards |
+	aBoardSize := 10.
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 3 5 7 )).
+	squareGenerator := SquareGenerator withOnlyEmptySquares.
+	aBoard := Board
+		          populatedBy: squareGenerator
+		          anAmountOf: aBoardSize
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' ).
+
+	aDeckOfCards := {
+		                Card cancellationWithoutOwner.
+		                Card cancellationWithoutOwner.
+		                Card cancellationWithoutOwner.
+		                Card cancellationWithoutOwner } asOrderedCollection.
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+
+	self
+		should: [
+		aGame throw: 'Cancellation Card' from: 'Player 1' to: 'Player 2' ]
+		raise: Error
+		withMessageText: 'Cancellation Card requiers a target card.'
+]
+
+{ #category : 'tests' }
+GameTest >> testC37WhenARepeatCardIsPlayedWithoutATargetShipThenItFails [
+
+	| aGame dice squareGenerator shipNames aBoard aBoardSize aDeckOfCards |
+	aBoardSize := 10.
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 3 5 7 )).
+	squareGenerator := SquareGenerator withOnlyEmptySquares.
+	aBoard := Board
+		          populatedBy: squareGenerator
+		          anAmountOf: aBoardSize
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' ).
+
+	aDeckOfCards := {
+		                Card repeatWithoutOwner .
+		                Card repeatWithoutOwner.
+		                Card repeatWithoutOwner.
+		                Card repeatWithoutOwner } asOrderedCollection.
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+
+	self
+		should: [
+		aGame throw: 'Repeat Card' from: 'Player 1' ]
+		raise: Error
+		withMessageText: 'Repeat Card requiers a target ship.'
+]
