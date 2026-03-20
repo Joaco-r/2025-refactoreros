@@ -93,9 +93,9 @@ Card >> checkForTargetRequirementsFor: aTargetShip whoPlayed: aTargetCardName [
 { #category : 'as yet unclassified' }
 Card >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: anotherShip [
 
-	^ effect
-		  checkForTurnRequierementwhen: aShip
-		  playsACardDuringTheTurnOf: anotherShip
+	effect
+		checkForTurnRequierementwhen: aShip
+		playsACardDuringTheTurnOf: anotherShip
 ]
 
 { #category : 'testing' }

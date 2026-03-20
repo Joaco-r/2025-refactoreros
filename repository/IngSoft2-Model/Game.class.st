@@ -121,15 +121,20 @@ Game >> applyCancellationTo: aTargetShip whoPlayed: aTargetCardName [
 Game >> applyRedoTo: aTargetShip from: aShip whoPlayed: aCard [
 
 	| newCard |
-	activeCards ifEmpty: [
-		Error signal: 'No card has been played yet' ].
+	activeCards ifEmpty: [ Error signal: 'No card has been played yet' ].
 
 	newCard := (activeCards at: 1) playedBy: aShip targetedTo: aTargetShip whoPlayed: aCard.
-	
-	newCard checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: (ships at: 1).
+
+	((activeCards at: 1) hasSameTypeAs: 'Redo Card') ifTrue: [
+		newCard := (activeCards at: 2) playedBy: aShip targetedTo: aTargetShip whoPlayed: aCard ].
+
+
+	newCard
+		checkForTurnRequierementwhen: aShip
+		playsACardDuringTheTurnOf: (ships at: 1).
+		
 	newCard applyOnPlayed: self to: aTargetShip.
-	activeCards addFirst: newCard.
-	 
+	activeCards addFirst: newCard
 ]
 
 { #category : 'actions' }
