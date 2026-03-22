@@ -17,6 +17,11 @@ RedoEffect >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
 	aGame applyRedoFrom: owner
 ]
 
+{ #category : 'as yet unclassified' }
+RedoEffect >> findCardToBeReplayed: activeCards [
+	^ (activeCards at: 2 )
+]
+
 { #category : 'testing' }
 RedoEffect >> hasTarget: aShip [
 

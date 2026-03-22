@@ -101,6 +101,12 @@ Card >> checkIfTargetShipNeeded [
 	effect checkIfTargetShipNeeded.
 ]
 
+{ #category : 'as yet unclassified' }
+Card >> findCardToBeReplayed: activeCards [
+
+	^ effect findCardToBeReplayed: activeCards
+]
+
 { #category : 'testing' }
 Card >> hasSameTypeAs: aCardName [
 	^ (effect isCalled: aCardName )

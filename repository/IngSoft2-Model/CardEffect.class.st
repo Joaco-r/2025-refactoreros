@@ -31,3 +31,8 @@ CardEffect >> checkIfTargetCardNeeded [
 { #category : 'as yet unclassified' }
 CardEffect >> checkIfTargetShipNeeded [
 ]
+
+{ #category : 'as yet unclassified' }
+CardEffect >> findCardToBeReplayed: activeCards [
+	^ (activeCards at: 1 )
+]

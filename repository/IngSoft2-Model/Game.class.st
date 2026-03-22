@@ -120,19 +120,17 @@ Game >> applyCancellationTo: aTargetShip whoPlayed: aTargetCardName [
 { #category : 'as yet unclassified' }
 Game >> applyRedoFrom: aShip [
 
-	| newCard |
+	| newCard cardToBeReplayed |
 	activeCards ifEmpty: [ Error signal: 'No card has been played yet' ].
 
-	newCard := (activeCards at: 1) playedBy: aShip.
-
-	((activeCards at: 1) hasSameTypeAs: 'Redo Card') ifTrue: [
-		newCard := (activeCards at: 2) playedBy: aShip].
-
+	cardToBeReplayed := (activeCards at: 1) findCardToBeReplayed:
+		                    activeCards.
+	newCard := cardToBeReplayed playedBy: aShip.
 
 	newCard
 		checkForTurnRequierementwhen: aShip
 		playsACardDuringTheTurnOf: (ships at: 1).
-		
+
 	newCard applyOnPlayed: self to: ''.
 	activeCards addFirst: newCard
 ]
@@ -140,19 +138,18 @@ Game >> applyRedoFrom: aShip [
 { #category : 'as yet unclassified' }
 Game >> applyRedoTo: aTargetShip from: aShip [
 
-	| newCard |
+	| newCard cardToBeReplayed |
 	activeCards ifEmpty: [ Error signal: 'No card has been played yet' ].
 
-	newCard := (activeCards at: 1) playedBy: aShip targetedTo: aTargetShip.
-
-	((activeCards at: 1) hasSameTypeAs: 'Redo Card') ifTrue: [
-		newCard := (activeCards at: 2) playedBy: aShip targetedTo: aTargetShip].
+	cardToBeReplayed := (activeCards at: 1) findCardToBeReplayed:
+		                    activeCards.
+	newCard := cardToBeReplayed playedBy: aShip targetedTo: aTargetShip.
 
 
 	newCard
 		checkForTurnRequierementwhen: aShip
 		playsACardDuringTheTurnOf: (ships at: 1).
-		
+
 	newCard applyOnPlayed: self to: aTargetShip.
 	activeCards addFirst: newCard
 ]
@@ -160,19 +157,22 @@ Game >> applyRedoTo: aTargetShip from: aShip [
 { #category : 'actions' }
 Game >> applyRedoTo: aTargetShip from: aShip whoPlayed: aCard [
 
-	| newCard |
+	| newCard cardToBeReplayed |
 	activeCards ifEmpty: [ Error signal: 'No card has been played yet' ].
 
-	newCard := (activeCards at: 1) playedBy: aShip targetedTo: aTargetShip whoPlayed: aCard.
 
-	((activeCards at: 1) hasSameTypeAs: 'Redo Card') ifTrue: [
-		newCard := (activeCards at: 2) playedBy: aShip targetedTo: aTargetShip whoPlayed: aCard ].
+	cardToBeReplayed := (activeCards at: 1) findCardToBeReplayed:
+		                    activeCards.
+	newCard := cardToBeReplayed
+		           playedBy: aShip
+		           targetedTo: aTargetShip
+		           whoPlayed: aCard.
 
 
 	newCard
 		checkForTurnRequierementwhen: aShip
 		playsACardDuringTheTurnOf: (ships at: 1).
-		
+
 	newCard applyOnPlayed: self to: aTargetShip.
 	activeCards addFirst: newCard
 ]
