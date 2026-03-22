@@ -776,7 +776,7 @@ GameTest >> testC03WhenAShipPlaysAccelerationCardAndAllShipsIncrementTheirDiceRo
 		         toPlayFor: 2
 		         drawingFrom: aDeckOfCards.
 
-	aGame throw: 'Acceleration Card' from: 'Player 1' to: 'Player 1'.
+	aGame throw: 'Acceleration Card' from: 'Player 1'.
 	aGame play.
 	aGame play.
 	aGame play.
@@ -1043,9 +1043,9 @@ GameTest >> testC10WhenARedoCardIsPlayedAfterAPermanentCardAndHasTheSameEffectTh
 		         toPlayFor: 2
 		         drawingFrom: aDeckOfCards.
 
-	aGame throw:'Acceleration Card' from: 'Player 1' to: 'Player 1'.
+	aGame throw:'Acceleration Card' from: 'Player 1'.
 	aGame play.
-	aGame throw:'Redo Card' from: 'Player 2' to: 'Player 2'.
+	aGame throw:'Redo Card' from: 'Player 2'.
 	aGame play.
 
 	self assert: (aGame positionOf: 'Player 1') equals: 5.
@@ -2120,4 +2120,38 @@ GameTest >> testC37WhenARepeatCardIsPlayedWithoutATargetShipThenItFails [
 		aGame throw: 'Repeat Card' from: 'Player 1' ]
 		raise: Error
 		withMessageText: 'Repeat Card requiers a target ship.'
+]
+
+{ #category : 'tests' }
+GameTest >> testC38 [
+
+	| aGame dice squareGenerator shipNames aBoard aBoardSize aDeckOfCards |
+	aBoardSize := 10.
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 3 5 7 )).
+	squareGenerator := SquareGenerator withOnlyEmptySquares.
+	aBoard := Board
+		          populatedBy: squareGenerator
+		          anAmountOf: aBoardSize
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' ).
+
+	aDeckOfCards := {
+		                Card accelerationWithoutOwner .
+		                Card accelerationWithoutOwner.
+		                Card accelerationWithoutOwner.
+		                Card accelerationWithoutOwner } asOrderedCollection.
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+
+	self
+		should: [
+		aGame throw: 'Acceleration Card' from: 'Player 1' to: 'Player 2' ]
+		raise: Error
+		withMessageText: 'Acceleration Card does not require a target ship.'
 ]

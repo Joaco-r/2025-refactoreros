@@ -7,9 +7,9 @@ Class {
 	#instVars : [
 		'targetShip'
 	],
-	#category : 'IngSoft2-Model-CardEffect',
+	#category : 'IngSoft2-Model-Card',
 	#package : 'IngSoft2-Model',
-	#tag : 'CardEffect'
+	#tag : 'Card'
 }
 
 { #category : 'instance creation' }
@@ -30,18 +30,17 @@ MercenaryEffect >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
 ]
 
 { #category : 'as yet unclassified' }
-MercenaryEffect >> checkForTargetRequirementsFor: aTargetShip whoPlayed: aTargetCardName [
-
-	aTargetShip isAValidTargetShip ifFalse: [
-		Error signal: 'Mercenary Card requiers a target ship.' ].
-]
-
-{ #category : 'as yet unclassified' }
 MercenaryEffect >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: anotherShip [
 
 	aShip ~= anotherShip ifTrue: [
 		Error signal:
 			'The ship is trying to use a permanent card out of its turn' ]
+]
+
+{ #category : 'as yet unclassified' }
+MercenaryEffect >> checkIfTargetShipNeeded [
+
+	Error signal: 'Mercenary Card requiers a target ship.'
 ]
 
 { #category : 'testing' }
@@ -63,6 +62,11 @@ MercenaryEffect >> isCalled: aName [
 ]
 
 { #category : 'as yet unclassified' }
-MercenaryEffect >> targetTo: aShip whoPlayed: aTargetCardName [
+MercenaryEffect >> targetTo: aShip [
 	^ self class targetedTo: aShip 
+]
+
+{ #category : 'as yet unclassified' }
+MercenaryEffect >> targetTo: aShip whoPlayed: aTargetCardName [
+	Error signal: 'Mercenary Card Does not require a target card.'
 ]

@@ -8,9 +8,9 @@ Class {
 		'targetShip',
 		'speedValue'
 	],
-	#category : 'IngSoft2-Model-CardEffect',
+	#category : 'IngSoft2-Model-Card',
 	#package : 'IngSoft2-Model',
-	#tag : 'CardEffect'
+	#tag : 'Card'
 }
 
 { #category : 'instance creation' }
@@ -27,18 +27,17 @@ SpeedEffect >> applyThrowEffectFor: aShip [
 ]
 
 { #category : 'as yet unclassified' }
-SpeedEffect >> checkForTargetRequirementsFor: aTargetShip whoPlayed: aTargetCardName [
-
-	aTargetShip isAValidTargetShip ifFalse: [
-		Error signal: 'Speed Card requiers a target ship.' ]
-]
-
-{ #category : 'as yet unclassified' }
 SpeedEffect >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: anotherShip [
 
 	aShip ~= anotherShip ifTrue: [
 		Error signal:
 			'The ship is trying to use a permanent card out of its turn' ]
+]
+
+{ #category : 'as yet unclassified' }
+SpeedEffect >> checkIfTargetShipNeeded [
+
+	Error signal: 'Speed Card requiers a target ship.'
 ]
 
 { #category : 'testing' }
@@ -60,7 +59,13 @@ SpeedEffect >> isCalled: aName [
 ]
 
 { #category : 'as yet unclassified' }
-SpeedEffect >> targetTo: aTargetShip whoPlayed: aTargetCardName [
+SpeedEffect >> targetTo: aTargetShip [
 
 	^ self class ofValue: speedValue targetedTo: aTargetShip
+]
+
+{ #category : 'as yet unclassified' }
+SpeedEffect >> targetTo: aTargetShip whoPlayed: aTargetCardName [
+
+	Error signal:'Speed Card does not require a target card.'
 ]

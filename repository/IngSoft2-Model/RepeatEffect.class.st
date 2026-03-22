@@ -7,9 +7,9 @@ Class {
 	#instVars : [
 		'targetShip'
 	],
-	#category : 'IngSoft2-Model-CardEffect',
+	#category : 'IngSoft2-Model-Card',
 	#package : 'IngSoft2-Model',
-	#tag : 'CardEffect'
+	#tag : 'Card'
 }
 
 { #category : 'instance creation' }
@@ -24,10 +24,9 @@ RepeatEffect >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
 ]
 
 { #category : 'as yet unclassified' }
-RepeatEffect >> checkForTargetRequirementsFor: aTargetShip whoPlayed: aTargetCardName [
+RepeatEffect >> checkIfTargetShipNeeded [
 
-	aTargetShip isAValidTargetShip ifFalse: [
-		Error signal: 'Repeat Card requiers a target ship.' ].
+	Error signal: 'Repeat Card requiers a target ship.'
 ]
 
 { #category : 'testing' }
@@ -49,6 +48,11 @@ RepeatEffect >> isCalled: aName [
 ]
 
 { #category : 'as yet unclassified' }
-RepeatEffect >> targetTo: aTargetShip whoPlayed: aTargetCardName [
+RepeatEffect >> targetTo: aTargetShip [
 	^ self class targetedTo: aTargetShip
+]
+
+{ #category : 'as yet unclassified' }
+RepeatEffect >> targetTo: aTargetShip whoPlayed: aTargetCardName [
+	Error signal: 'Repeat Card does not require a target card.'
 ]

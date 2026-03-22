@@ -8,9 +8,9 @@ Class {
 		'targetShip',
 		'targetCardName'
 	],
-	#category : 'IngSoft2-Model-CardEffect',
+	#category : 'IngSoft2-Model-Card',
 	#package : 'IngSoft2-Model',
-	#tag : 'CardEffect'
+	#tag : 'Card'
 }
 
 { #category : 'as yet unclassified' }
@@ -24,13 +24,15 @@ CancellationEffect >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
 ]
 
 { #category : 'as yet unclassified' }
-CancellationEffect >> checkForTargetRequirementsFor: aTargetShip whoPlayed: aTargetCardName [
+CancellationEffect >> checkIfTargetCardNeeded [
 
-	aTargetShip isAValidTargetShip ifFalse: [
-		Error signal: 'Cancellation Card requiers a target ship.' ].
+	Error signal: 'Cancellation Card requiers a target card.'
+]
 
-	aTargetCardName ifEmpty: [
-		Error signal: 'Cancellation Card requiers a target card.' ]
+{ #category : 'as yet unclassified' }
+CancellationEffect >> checkIfTargetShipNeeded [
+
+	Error signal: 'Cancellation Card requiers a target ship.'
 ]
 
 { #category : 'testing' }
@@ -50,6 +52,12 @@ CancellationEffect >> intializeTargetedTo: aTargetShip whoPlayed: aTargetCardNam
 CancellationEffect >> isCalled: aName [
 
 	^ 'Cancellation Card' = aName
+]
+
+{ #category : 'as yet unclassified' }
+CancellationEffect >> targetTo: aTargetShip [
+
+	Error signal:'Cancellation Card requires a target card.'
 ]
 
 { #category : 'as yet unclassified' }

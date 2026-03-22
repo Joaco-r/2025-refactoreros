@@ -7,9 +7,9 @@ Class {
 	#instVars : [
 		'accelerationValue'
 	],
-	#category : 'IngSoft2-Model-CardEffect',
+	#category : 'IngSoft2-Model-Card',
 	#package : 'IngSoft2-Model',
-	#tag : 'CardEffect'
+	#tag : 'Card'
 }
 
 { #category : 'instance creation' }
@@ -48,7 +48,13 @@ AccelerationEffect >> isCalled: aName [
 ]
 
 { #category : 'as yet unclassified' }
-AccelerationEffect >> targetTo: aTargetShip whoPlayed: aTargetCardName [
+AccelerationEffect >> targetTo: aTargetShip [ 
+	
+	Error signal: 'Acceleration Card does not require a target ship.'
+]
 
-	^ self
+{ #category : 'as yet unclassified' }
+AccelerationEffect >> targetTo: aTargetShip whoPlayed: aTargetCardName [
+	
+	Error signal: 'Acceleration Card does not require a target card.'
 ]

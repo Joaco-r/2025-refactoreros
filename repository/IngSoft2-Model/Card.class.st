@@ -47,9 +47,7 @@ Card class >> ownedBy: aShip causing: anEffect [
 { #category : 'instance creation' }
 Card class >> redoWithoutOwner [
 
-	^ self new
-		  initializeOwnedBy: NullShip new
-		  causing: (RedoEffect targetedTo: NullShip new)
+	^ self new initializeOwnedBy: NullShip new causing: RedoEffect new
 ]
 
 { #category : 'as yet unclassified' }
@@ -86,19 +84,21 @@ Card >> applyThrowEffectFor: aShip [
 ]
 
 { #category : 'as yet unclassified' }
-Card >> checkForTargetRequirementsFor: aTargetShip whoPlayed: aTargetCardName [
-
-	effect
-		checkForTargetRequirementsFor: aTargetShip
-		whoPlayed: aTargetCardName
-]
-
-{ #category : 'as yet unclassified' }
 Card >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: anotherShip [
 
 	effect
 		checkForTurnRequierementwhen: aShip
 		playsACardDuringTheTurnOf: anotherShip
+]
+
+{ #category : 'as yet unclassified' }
+Card >> checkIfTargetCardNeeded [
+	effect checkIfTargetCardNeeded.
+]
+
+{ #category : 'as yet unclassified' }
+Card >> checkIfTargetShipNeeded [
+	effect checkIfTargetShipNeeded.
 ]
 
 { #category : 'testing' }
@@ -124,6 +124,22 @@ Card >> initializeOwnedBy: aShip causing: anEffect [
 Card >> is: aCardName ownedBy: aShip [
 
 	^ aShip = owner and: (effect isCalled: aCardName)
+]
+
+{ #category : 'as yet unclassified' }
+Card >> playedBy: aShip [
+
+	^ self class
+		  ownedBy: aShip
+		  causing: (effect)
+]
+
+{ #category : 'as yet unclassified' }
+Card >> playedBy: aShip targetedTo: aTargetShip [
+
+	^ self class
+		  ownedBy: aShip
+		  causing: (effect targetTo: aTargetShip)
 ]
 
 { #category : 'as yet unclassified' }

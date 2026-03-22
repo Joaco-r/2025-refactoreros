@@ -117,6 +117,46 @@ Game >> applyCancellationTo: aTargetShip whoPlayed: aTargetCardName [
 	activeCards remove: cardToBeCancelled
 ]
 
+{ #category : 'as yet unclassified' }
+Game >> applyRedoFrom: aShip [
+
+	| newCard |
+	activeCards ifEmpty: [ Error signal: 'No card has been played yet' ].
+
+	newCard := (activeCards at: 1) playedBy: aShip.
+
+	((activeCards at: 1) hasSameTypeAs: 'Redo Card') ifTrue: [
+		newCard := (activeCards at: 2) playedBy: aShip].
+
+
+	newCard
+		checkForTurnRequierementwhen: aShip
+		playsACardDuringTheTurnOf: (ships at: 1).
+		
+	newCard applyOnPlayed: self to: ''.
+	activeCards addFirst: newCard
+]
+
+{ #category : 'as yet unclassified' }
+Game >> applyRedoTo: aTargetShip from: aShip [
+
+	| newCard |
+	activeCards ifEmpty: [ Error signal: 'No card has been played yet' ].
+
+	newCard := (activeCards at: 1) playedBy: aShip targetedTo: aTargetShip.
+
+	((activeCards at: 1) hasSameTypeAs: 'Redo Card') ifTrue: [
+		newCard := (activeCards at: 2) playedBy: aShip targetedTo: aTargetShip].
+
+
+	newCard
+		checkForTurnRequierementwhen: aShip
+		playsACardDuringTheTurnOf: (ships at: 1).
+		
+	newCard applyOnPlayed: self to: aTargetShip.
+	activeCards addFirst: newCard
+]
+
 { #category : 'actions' }
 Game >> applyRedoTo: aTargetShip from: aShip whoPlayed: aCard [
 
@@ -282,7 +322,7 @@ Game >> throw: aCardName from: aShipName [
 	queriedShip := self searchShipByName: aShipName.
 
 	
-	card := queriedShip throw: aCardName whenTurnOf: (ships at: 1) to: (NullShip new) whoPlayed: ''.
+	card := queriedShip throw: aCardName whenTurnOf: (ships at: 1).
 	
 	card applyOnPlayed: self to: ''.
 	activeCards addFirst: card.
@@ -295,7 +335,7 @@ Game >> throw: aCardName from: aShipName to: aTargetShipName [
 	queriedShip := self searchShipByName: aShipName.
 	queriedTargetShip := self searchShipByName: aTargetShipName.
 	
-	card := queriedShip throw: aCardName whenTurnOf: (ships at: 1) to: queriedTargetShip whoPlayed: ''.
+	card := queriedShip throw: aCardName whenTurnOf: (ships at: 1) to: queriedTargetShip.
 	
 	card applyOnPlayed: self to: queriedTargetShip. 
 	activeCards addFirst: card.

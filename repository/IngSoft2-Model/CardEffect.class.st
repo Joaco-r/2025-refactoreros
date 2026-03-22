@@ -1,9 +1,9 @@
 Class {
 	#name : 'CardEffect',
 	#superclass : 'Object',
-	#category : 'IngSoft2-Model-CardEffect',
+	#category : 'IngSoft2-Model-Card',
 	#package : 'IngSoft2-Model',
-	#tag : 'CardEffect'
+	#tag : 'Card'
 }
 
 { #category : 'actions' }
@@ -21,10 +21,13 @@ CardEffect >> applyThrowEffectFor: aShip [
 ]
 
 { #category : 'as yet unclassified' }
-CardEffect >> checkForTargetRequirementsFor: aTargetShip whoPlayed: aTargetCardName [
-
+CardEffect >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: anotherShip [
 ]
 
 { #category : 'as yet unclassified' }
-CardEffect >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: anotherShip [
+CardEffect >> checkIfTargetCardNeeded [
+]
+
+{ #category : 'as yet unclassified' }
+CardEffect >> checkIfTargetShipNeeded [
 ]

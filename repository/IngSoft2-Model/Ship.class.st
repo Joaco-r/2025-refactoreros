@@ -140,17 +140,61 @@ Ship >> shields [
 ]
 
 { #category : 'actions' }
+Ship >> throw: aCardName whenTurnOf: aShip [
+
+	| card cardToBePlayed |
+	(cardsInHand anySatisfy: [ :aCard | aCard hasSameTypeAs: aCardName ])
+		ifFalse: [ Error signal: 'The ship does not have this card' ].
+	card := cardsInHand detect: [ :aCard |
+		        aCard hasSameTypeAs: aCardName ].
+
+	card
+		checkForTurnRequierementwhen: self
+		playsACardDuringTheTurnOf: aShip.
+	card checkIfTargetShipNeeded.
+	card checkIfTargetCardNeeded.
+
+
+	cardToBePlayed := card playedBy: self.
+	cardsInHand remove: card.
+
+	^ cardToBePlayed
+]
+
+{ #category : 'actions' }
+Ship >> throw: aCardName whenTurnOf: aShip to: aTargetShip [
+
+	| card cardToBePlayed |
+	(cardsInHand anySatisfy: [ :aCard | aCard hasSameTypeAs: aCardName ])
+		ifFalse: [ Error signal: 'The ship does not have this card' ].
+	card := cardsInHand detect: [ :aCard |
+		        aCard hasSameTypeAs: aCardName ].
+
+	card
+		checkForTurnRequierementwhen: self
+		playsACardDuringTheTurnOf: aShip.
+	card checkIfTargetCardNeeded.
+
+	cardToBePlayed := card playedBy: self targetedTo: aTargetShip.
+	cardsInHand remove: card.
+
+	^ cardToBePlayed
+]
+
+{ #category : 'actions' }
 Ship >> throw: aCardName whenTurnOf: aShip to: aTargetShip whoPlayed: aTargetCardName [
 
-	| card |
+	| card cardToBePlayed |
 	(cardsInHand anySatisfy: [ :aCard | aCard hasSameTypeAs: aCardName ])
 		ifFalse: [ Error signal: 'The ship does not have this card' ].
 	card := cardsInHand detect: [ :aCard |
 		        aCard hasSameTypeAs: aCardName ].
 
 	card checkForTurnRequierementwhen: self playsACardDuringTheTurnOf: aShip.
-	card checkForTargetRequirementsFor: aTargetShip whoPlayed: aTargetCardName.
+	
+	cardToBePlayed := card playedBy: self targetedTo: aTargetShip whoPlayed: aTargetCardName.
+	
 	cardsInHand remove: card.
 
-	^ card playedBy: self targetedTo: aTargetShip whoPlayed: aTargetCardName
+	^ cardToBePlayed
 ]
