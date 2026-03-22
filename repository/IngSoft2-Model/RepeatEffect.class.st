@@ -26,7 +26,7 @@ RepeatEffect >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
 { #category : 'as yet unclassified' }
 RepeatEffect >> checkIfTargetShipNeeded [
 
-	Error signal: 'Repeat Card requiers a target ship.'
+	Error signal: 'Repeat Card requires a target ship.'
 ]
 
 { #category : 'testing' }

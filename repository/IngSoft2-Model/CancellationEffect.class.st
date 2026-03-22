@@ -57,7 +57,7 @@ CancellationEffect >> isCalled: aName [
 { #category : 'as yet unclassified' }
 CancellationEffect >> targetTo: aTargetShip [
 
-	Error signal:'Cancellation Card requires a target card.'
+	Error signal:'Cancellation Card requiers a target card.'
 ]
 
 { #category : 'as yet unclassified' }

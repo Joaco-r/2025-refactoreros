@@ -130,6 +130,8 @@ Game >> applyRedoFrom: aShip [
 	newCard
 		checkForTurnRequierementwhen: aShip
 		playsACardDuringTheTurnOf: (ships at: 1).
+	newCard checkIfTargetShipNeeded.
+	newCard checkIfTargetCardNeeded.
 
 	newCard applyOnPlayed: self to: ''.
 	activeCards addFirst: newCard
@@ -149,6 +151,7 @@ Game >> applyRedoTo: aTargetShip from: aShip [
 	newCard
 		checkForTurnRequierementwhen: aShip
 		playsACardDuringTheTurnOf: (ships at: 1).
+	newCard checkIfTargetCardNeeded.
 
 	newCard applyOnPlayed: self to: aTargetShip.
 	activeCards addFirst: newCard

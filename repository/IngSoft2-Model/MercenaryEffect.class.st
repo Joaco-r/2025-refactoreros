@@ -68,5 +68,5 @@ MercenaryEffect >> targetTo: aShip [
 
 { #category : 'as yet unclassified' }
 MercenaryEffect >> targetTo: aShip whoPlayed: aTargetCardName [
-	Error signal: 'Mercenary Card Does not require a target card.'
+	Error signal: 'Mercenary Card does not require a target card.'
 ]
