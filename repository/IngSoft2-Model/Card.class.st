@@ -17,7 +17,7 @@ Class {
 Card class >> accelerationWithoutOwner [
 
 	^ self new
-		  initializeOwnedBy: NullShip new
+		  initializeOwnedBy: nil
 		  causing: (AccelerationEffect ofValue: 1)
 ]
 
@@ -25,17 +25,16 @@ Card class >> accelerationWithoutOwner [
 Card class >> cancellationWithoutOwner [
 
 	^ self new
-		  initializeOwnedBy: NullShip new
-		  causing:
-		  (CancellationEffect targetTo: NullShip new whoPlayed: NullCard new)
+		  initializeOwnedBy: nil
+		  causing: (CancellationEffect targetTo: nil whoPlayed: nil)
 ]
 
 { #category : 'instance creation' }
 Card class >> mercenaryWithoutOwner [
 
 	^ self new
-		  initializeOwnedBy: NullShip new
-		  causing: (MercenaryEffect targetedTo: NullShip new)
+		  initializeOwnedBy: nil
+		  causing: (MercenaryEffect targetedTo: nil)
 ]
 
 { #category : 'instance creation' }
@@ -47,23 +46,23 @@ Card class >> ownedBy: aShip causing: anEffect [
 { #category : 'instance creation' }
 Card class >> redoWithoutOwner [
 
-	^ self new initializeOwnedBy: NullShip new causing: RedoEffect new
+	^ self new initializeOwnedBy: nil causing: RedoEffect new
 ]
 
 { #category : 'as yet unclassified' }
 Card class >> repeatWithoutOwner [
 
 	^ self new
-		  initializeOwnedBy: NullShip new
-		  causing: (RepeatEffect targetedTo: NullShip new)
+		  initializeOwnedBy: nil
+		  causing: (RepeatEffect targetedTo: nil)
 ]
 
 { #category : 'instance creation' }
 Card class >> speedWithoutOwner [
 
 	^ self new
-		  initializeOwnedBy: NullShip new
-		  causing: (SpeedEffect ofValue: 1 targetedTo: NullShip new)
+		  initializeOwnedBy: nil
+		  causing: (SpeedEffect ofValue: 1 targetedTo: nil)
 ]
 
 { #category : 'actions' }
