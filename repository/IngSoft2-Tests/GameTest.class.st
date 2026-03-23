@@ -189,7 +189,7 @@ GameTest >> testA08WhenBoardIsCreatedWithLessThanTwoSquaresThenFails [
 ]
 
 { #category : 'tests' }
-GameTest >> testA09WhenAShipWinsAndGameFinishesThenValid [
+GameTest >> testA09WhenAShipWinsThenGameFinishes [
 
 	| aGame dice squareGenerator shipNames aBoard |
 	dice := OrderedCollection new.
@@ -233,7 +233,7 @@ GameTest >> testB01WhenLapsGoalIsNotReachedAndGameIsFinishedThenInvalid [
 ]
 
 { #category : 'tests' }
-GameTest >> testB02WhenShipsLandsPastSquareCountAndLapsIncreasesThenValid [
+GameTest >> testB02WhenShipsLandsPastSquareCountThenLapsIncreases [
 
 	| aGame dice squareGenerator shipNames aBoard |
 	dice := OrderedCollection new.
@@ -255,7 +255,7 @@ GameTest >> testB02WhenShipsLandsPastSquareCountAndLapsIncreasesThenValid [
 ]
 
 { #category : 'tests' }
-GameTest >> testB03WhenAShipLandsPastLapLimitAndItsPositionCirclesBackThenValid [
+GameTest >> testB03WhenAShipLandsPastLapLimitThenItsPositionCirclesBack [
 
 	| aGame dice squareGenerator shipNames aBoard |
 	dice := OrderedCollection new.
@@ -298,7 +298,7 @@ GameTest >> testB04WhenBoardIsCreatedWithInvalidLapCountThenFails [
 ]
 
 { #category : 'tests' }
-GameTest >> testB05WhenAShipIsBehindAnotherOneAndItIsRankedAsSecondThenValid [
+GameTest >> testB05WhenAShipIsBehindOnlyOneOtherShipThenItIsRankedAsSecond [
 
 	| aGame dice squareGenerator shipNames aBoard|
 	dice := OrderedCollection new.
@@ -321,7 +321,7 @@ GameTest >> testB05WhenAShipIsBehindAnotherOneAndItIsRankedAsSecondThenValid [
 ]
 
 { #category : 'tests' }
-GameTest >> testB06WhenAShipLandsOnAtomicBombAndAllShipsGoBackToFirstSquareThenValid [
+GameTest >> testB06WhenAShipLandsOnAtomicBombThenAllShipsGoBackToFirstSquare [
 
 	| aGame dice aSetOfSquares shipNames aBoard |
 	dice := OrderedCollection new.
@@ -350,7 +350,7 @@ GameTest >> testB06WhenAShipLandsOnAtomicBombAndAllShipsGoBackToFirstSquareThenV
 ]
 
 { #category : 'tests' }
-GameTest >> testB07WhenAShipLandsOnAtomicBombAndAllShipsLoseAShieldThenValid [
+GameTest >> testB07WhenAShipLandsOnAtomicBombThenAllShipsLoseAShield [
 
 	| aGame dice aSetOfSquares shipNames aBoard |
 	dice := OrderedCollection new.
@@ -380,7 +380,7 @@ GameTest >> testB07WhenAShipLandsOnAtomicBombAndAllShipsLoseAShieldThenValid [
 ]
 
 { #category : 'tests' }
-GameTest >> testB08WhenAShipLandsOnBlackHoleAndGoesBack4SquaresThenValid [
+GameTest >> testB08WhenAShipLandsOnBlackHoleThenItGoesBack4Squares [
 
 	| aGame dice aSetOfSquares shipNames aBoard |
 	dice := OrderedCollection new.
@@ -409,7 +409,7 @@ GameTest >> testB08WhenAShipLandsOnBlackHoleAndGoesBack4SquaresThenValid [
 ]
 
 { #category : 'tests' }
-GameTest >> testB09WhenAShipLandsOnHyperSpaceJumpAndAdvances4SquaresThenValid [
+GameTest >> testB09WhenAShipLandsOnHyperSpaceJumpThenItAdvances4Squares [
 
 	| aGame dice aSetOfSquares shipNames aBoard |
 	dice := OrderedCollection new.
@@ -438,7 +438,7 @@ GameTest >> testB09WhenAShipLandsOnHyperSpaceJumpAndAdvances4SquaresThenValid [
 ]
 
 { #category : 'tests' }
-GameTest >> testB10WhenAShipLandsOnHyperSpaceJumpAndLoseAShieldThenValid [
+GameTest >> testB10WhenAShipLandsOnHyperSpaceJumpThenItLosesAShield [
 
 	| aGame dice aSetOfSquares shipNames aBoard |
 	dice := OrderedCollection new.
@@ -467,7 +467,7 @@ GameTest >> testB10WhenAShipLandsOnHyperSpaceJumpAndLoseAShieldThenValid [
 ]
 
 { #category : 'tests' }
-GameTest >> testB11WhenAShipLandsOnMoonWalkAndShipStaysInPositionButOtherShipsGoBackThenValid [
+GameTest >> testB11WhenAShipLandsOnMoonWalkThenTheShipStaysInPositionButOtherShipsGoBack [
 
 	| aGame dice aSetOfSquares shipNames aBoard |
 	dice := OrderedCollection new.
@@ -501,7 +501,7 @@ GameTest >> testB11WhenAShipLandsOnMoonWalkAndShipStaysInPositionButOtherShipsGo
 ]
 
 { #category : 'tests' }
-GameTest >> testB12WhenAShipLandsOnWormHoleEntranceAndLandsOnExitThenValid [
+GameTest >> testB12WhenAShipLandsOnWormHoleEntranceThenItMovesToTheExit [
 
 	| aGame dice aSetOfSquares shipNames aBoard |
 	dice := OrderedCollection new.
@@ -529,7 +529,7 @@ GameTest >> testB12WhenAShipLandsOnWormHoleEntranceAndLandsOnExitThenValid [
 ]
 
 { #category : 'tests' }
-GameTest >> testB13WhenAShipLandsOnWormHoleExitAndLandsOnEntranceThenValid [
+GameTest >> testB13WhenAShipLandsOnWormHoleExitThenItMovesToTheEntrance [
 
 	| aGame dice aSetOfSquares shipNames aBoard |
 	dice := OrderedCollection new.
@@ -557,7 +557,7 @@ GameTest >> testB13WhenAShipLandsOnWormHoleExitAndLandsOnEntranceThenValid [
 ]
 
 { #category : 'tests' }
-GameTest >> testB14WhenAShipLandsOnASquareWithAnotherShipThenTheyBattleAndOnlyLoserGoesBackToLapStartThenValid [
+GameTest >> testB14WhenAShipLandsOnASquareWithAnotherShipThenTheyBattleAndOnlyLoserGoesBackToLapStart [
 
 	| aGame dice aSetOfSquares shipNames aBoard |
 	dice := OrderedCollection new.
@@ -584,7 +584,7 @@ GameTest >> testB14WhenAShipLandsOnASquareWithAnotherShipThenTheyBattleAndOnlyLo
 ]
 
 { #category : 'tests' }
-GameTest >> testB15WhenAShipLandsOnASquareWithAnotherShipThenTheyBattleAndLoserGetsAShieldBrokenThenValid [
+GameTest >> testB15WhenAShipLandsOnASquareWithAnotherShipAndTheyBattleThenTheLoserGetsAShieldBroken [
 
 	| aGame dice aSetOfSquares shipNames aBoard |
 	dice := OrderedCollection new.
@@ -611,7 +611,7 @@ GameTest >> testB15WhenAShipLandsOnASquareWithAnotherShipThenTheyBattleAndLoserG
 ]
 
 { #category : 'tests' }
-GameTest >> testB16WhenAShipThatJustLostOneShieldDecidesToSkipItsTurnAndShieldsGetRechargedThenValid [
+GameTest >> testB16WhenAShipThatJustLostOneShieldDecidesToSkipItsTurnThenItsShieldsGetRecharged [
 
 	| aGame dice aSetOfSquares shipNames aBoard |
 	dice := OrderedCollection new.
@@ -639,7 +639,7 @@ GameTest >> testB16WhenAShipThatJustLostOneShieldDecidesToSkipItsTurnAndShieldsG
 ]
 
 { #category : 'tests' }
-GameTest >> testB17WhenAShipLandsOnHyperJumpAndAdvancesAccordingToParsecsRewardsThenValid [
+GameTest >> testB17WhenAShipLandsOnHyperJumpThenItAdvancesAccordingToParsecsRewards [
 
 	| aGame dice aSetOfSquares shipNames aBoard |
 	dice := OrderedCollection new.
@@ -671,7 +671,7 @@ GameTest >> testB17WhenAShipLandsOnHyperJumpAndAdvancesAccordingToParsecsRewards
 ]
 
 { #category : 'tests' }
-GameTest >> testB18WhenAShipLandsOnExhaustedHyperJumpAndAdvancesAccordingToRecycledParsecsRewardsThenValid [
+GameTest >> testB18WhenAShipLandsOnExhaustedHyperJumpThenItAdvancesAccordingToRecycledParsecsRewards [
 
 	| aGame dice aSetOfSquares shipNames aBoard |
 	dice := OrderedCollection new.
