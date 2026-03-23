@@ -31,7 +31,7 @@ AccelerationEffect >> checkForTurnRequierementwhen: aShip playsACardDuringTheTur
 ]
 
 { #category : 'testing' }
-AccelerationEffect >> hasTarget: aShip [
+AccelerationEffect >> hasAsTarget: aShip [
 
 	^ false
 ]

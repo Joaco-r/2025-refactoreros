@@ -44,7 +44,7 @@ MercenaryEffect >> checkIfTargetShipNeeded [
 ]
 
 { #category : 'testing' }
-MercenaryEffect >> hasTarget: aShip [
+MercenaryEffect >> hasAsTarget: aShip [
 
 	^ targetShip = aShip
 ]

@@ -108,14 +108,14 @@ Card >> findCardToBeReplayed: activeCards [
 ]
 
 { #category : 'testing' }
-Card >> hasSameTypeAs: aCardName [
-	^ (effect isCalled: aCardName )
+Card >> hasAsTarget: aShip [
+
+	^ effect hasAsTarget: aShip
 ]
 
 { #category : 'testing' }
-Card >> hasTarget: aShip [
-
-	^ effect hasTarget: aShip
+Card >> hasSameTypeAs: aCardName [
+	^ (effect isCalled: aCardName )
 ]
 
 { #category : 'initialization' }

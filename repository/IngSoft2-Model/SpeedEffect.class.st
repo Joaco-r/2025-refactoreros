@@ -41,7 +41,7 @@ SpeedEffect >> checkIfTargetShipNeeded [
 ]
 
 { #category : 'testing' }
-SpeedEffect >> hasTarget: aShip [
+SpeedEffect >> hasAsTarget: aShip [
 
 	^ targetShip = aShip
 ]

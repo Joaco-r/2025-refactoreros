@@ -36,7 +36,7 @@ CancellationEffect >> checkIfTargetShipNeeded [
 ]
 
 { #category : 'testing' }
-CancellationEffect >> hasTarget: aShip [
+CancellationEffect >> hasAsTarget: aShip [
 
 	^ targetShip = aShip
 ]

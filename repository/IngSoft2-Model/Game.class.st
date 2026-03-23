@@ -210,7 +210,7 @@ Game >> checkIf: aShip canHireAsMercenary: anotherShip [
 		| activeMercenaryCards |
 	activeMercenaryCards := activeCards select: [ :aCard | aCard hasSameTypeAs: 'Mercenary Card' ]. 
 	
-	(activeMercenaryCards anySatisfy: [ :aCard | aCard hasTarget: anotherShip ]) ifTrue: [ Error signal: 'Ship has already been hired as mercenary' ].
+	(activeMercenaryCards anySatisfy: [ :aCard | aCard hasAsTarget: anotherShip ]) ifTrue: [ Error signal: 'Ship has already been hired as mercenary' ].
 ]
 
 { #category : 'actions' }

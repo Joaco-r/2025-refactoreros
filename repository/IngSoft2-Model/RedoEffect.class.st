@@ -23,7 +23,7 @@ RedoEffect >> findCardToBeReplayed: activeCards [
 ]
 
 { #category : 'testing' }
-RedoEffect >> hasTarget: aShip [
+RedoEffect >> hasAsTarget: aShip [
 
 	^ false
 ]

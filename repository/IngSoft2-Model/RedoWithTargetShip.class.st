@@ -1,3 +1,6 @@
+"
+When used in a card that requires a target ship, can be played out of turn to mimic the effect of the last played card, regardless of its type (instant or permanent)
+"
 Class {
 	#name : 'RedoWithTargetShip',
 	#superclass : 'RedoEffect',

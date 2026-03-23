@@ -30,7 +30,7 @@ RepeatEffect >> checkIfTargetShipNeeded [
 ]
 
 { #category : 'testing' }
-RepeatEffect >> hasTarget: aShip [
+RepeatEffect >> hasAsTarget: aShip [
 
 	^ targetShip = aShip
 ]
