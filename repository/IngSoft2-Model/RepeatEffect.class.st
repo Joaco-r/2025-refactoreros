@@ -29,12 +29,6 @@ RepeatEffect >> checkIfTargetShipNeeded [
 	Error signal: 'Repeat Card requires a target ship.'
 ]
 
-{ #category : 'testing' }
-RepeatEffect >> hasAsTarget: aShip [
-
-	^ targetShip = aShip
-]
-
 { #category : 'initialization' }
 RepeatEffect >> intializeTargetedTo: aTargetPlayer [
 

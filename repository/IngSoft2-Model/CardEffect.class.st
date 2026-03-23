@@ -36,3 +36,8 @@ CardEffect >> checkIfTargetShipNeeded [
 CardEffect >> findCardToBeReplayed: activeCards [
 	^ (activeCards at: 1 )
 ]
+
+{ #category : 'testing' }
+CardEffect >> hasHiredAsAMercenary: aShip [
+	^ false
+]

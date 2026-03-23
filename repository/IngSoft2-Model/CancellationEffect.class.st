@@ -35,12 +35,6 @@ CancellationEffect >> checkIfTargetShipNeeded [
 	Error signal: 'Cancellation Card requiers a target ship.'
 ]
 
-{ #category : 'testing' }
-CancellationEffect >> hasAsTarget: aShip [
-
-	^ targetShip = aShip
-]
-
 { #category : 'as yet unclassified' }
 CancellationEffect >> intializeTargetedTo: aTargetShip whoPlayed: aTargetCardName [
 

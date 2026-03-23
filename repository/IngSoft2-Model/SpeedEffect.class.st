@@ -40,12 +40,6 @@ SpeedEffect >> checkIfTargetShipNeeded [
 	Error signal: 'Speed Card requiers a target ship.'
 ]
 
-{ #category : 'testing' }
-SpeedEffect >> hasAsTarget: aShip [
-
-	^ targetShip = aShip
-]
-
 { #category : 'initialization' }
 SpeedEffect >> initializeWithSpeedValue: aSpeedValue and: aTargetShip [
 	speedValue := aSpeedValue.

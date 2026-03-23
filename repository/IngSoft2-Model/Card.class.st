@@ -107,9 +107,9 @@ Card >> findCardToBeReplayed: activeCards [
 ]
 
 { #category : 'testing' }
-Card >> hasAsTarget: aShip [
+Card >> hasHiredAsAMercenary: aShip [
 
-	^ effect hasAsTarget: aShip
+	^ effect hasHiredAsAMercenary: aShip
 ]
 
 { #category : 'testing' }

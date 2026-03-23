@@ -85,12 +85,6 @@ Ship >> initializeFor: aPlayerName startingAt: aPostion shieldedWith: aNumberOfS
 
 ]
 
-{ #category : 'testing' }
-Ship >> isAValidTargetShip [
-
-	^ true
-]
-
 { #category : 'accessing' }
 Ship >> isAtTheSameSquareAs: anotherShip [
 

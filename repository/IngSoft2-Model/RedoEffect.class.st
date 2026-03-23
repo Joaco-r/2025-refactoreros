@@ -23,12 +23,6 @@ RedoEffect >> findCardToBeReplayed: activeCards [
 ]
 
 { #category : 'testing' }
-RedoEffect >> hasAsTarget: aShip [
-
-	^ false
-]
-
-{ #category : 'testing' }
 RedoEffect >> isCalled: aName [
 
 	^ 'Redo Card' = aName

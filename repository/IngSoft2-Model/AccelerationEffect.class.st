@@ -30,12 +30,6 @@ AccelerationEffect >> checkForTurnRequierementwhen: aShip playsACardDuringTheTur
 			'The ship is trying to use a permanent card out of its turn' ]
 ]
 
-{ #category : 'testing' }
-AccelerationEffect >> hasAsTarget: aShip [
-
-	^ false
-]
-
 { #category : 'initialization' }
 AccelerationEffect >> initializeWith: anAccelerationValue [
 	accelerationValue := anAccelerationValue.
