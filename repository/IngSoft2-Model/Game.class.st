@@ -248,17 +248,14 @@ Game >> lapCountOf: aShipName [
 { #category : 'actions' }
 Game >> play [
 
-	| diceOutcome aShip extraPointsForThrow |
+	| diceOutcome aShip |
 	self checkForActiveGame.
 	aShip := ships addLast: ships removeFirst.
 	self checkIfAllowedToPlay: aShip.
-	diceOutcome := board rollDice.
-	extraPointsForThrow := 0.
-	activeCards do: [ :aCard |
-		extraPointsForThrow := extraPointsForThrow
-		                       + (aCard applyThrowEffectFor: aShip) ].
 
-	shipManager moveShip: aShip to: diceOutcome + extraPointsForThrow.
+	diceOutcome := board rollDiceFor: aShip with: activeCards.
+	shipManager moveShip: aShip to: diceOutcome.
+
 	nextSquare := board squareAt: aShip boardPosition.
 	shipManager landShip: aShip atSquare: nextSquare on: board
 ]
