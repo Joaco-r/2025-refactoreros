@@ -23,9 +23,9 @@ RedoEffect >> findCardToBeReplayed: activeCards [
 ]
 
 { #category : 'testing' }
-RedoEffect >> isCalled: aName [
+RedoEffect >> isCalled: anEffectName [
 
-	^ 'Redo Card' = aName
+	^ 'Redo Card' = anEffectName
 ]
 
 { #category : 'as yet unclassified' }

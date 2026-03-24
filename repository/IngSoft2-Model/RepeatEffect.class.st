@@ -36,9 +36,9 @@ RepeatEffect >> intializeTargetedTo: aTargetPlayer [
 ]
 
 { #category : 'testing' }
-RepeatEffect >> isCalled: aName [
+RepeatEffect >> isCalled: anEffectName [
 
-	^ 'Repeat Card' = aName
+	^ 'Repeat Card' = anEffectName
 ]
 
 { #category : 'as yet unclassified' }

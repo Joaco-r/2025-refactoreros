@@ -107,14 +107,14 @@ Card >> findCardToBeReplayed: activeCards [
 ]
 
 { #category : 'testing' }
-Card >> hasHiredAsAMercenary: aShip [
-
-	^ effect hasHiredAsAMercenary: aShip
+Card >> hasAsEffect: aCardName [
+	^ (effect isCalled: aCardName )
 ]
 
 { #category : 'testing' }
-Card >> hasSameTypeAs: aCardName [
-	^ (effect isCalled: aCardName )
+Card >> hasHiredAsAMercenary: aShip [
+
+	^ effect hasHiredAsAMercenary: aShip
 ]
 
 { #category : 'initialization' }

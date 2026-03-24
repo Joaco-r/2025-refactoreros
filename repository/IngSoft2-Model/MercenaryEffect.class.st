@@ -56,9 +56,9 @@ MercenaryEffect >> initializeTargetedTo: aTargetShip [
 ]
 
 { #category : 'accessing' }
-MercenaryEffect >> isCalled: aName [
+MercenaryEffect >> isCalled: anEffectName [
 
-	^ 'Mercenary Card' = aName
+	^ 'Mercenary Card' = anEffectName
 ]
 
 { #category : 'as yet unclassified' }

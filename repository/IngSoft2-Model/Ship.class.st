@@ -137,10 +137,10 @@ Ship >> shields [
 Ship >> throw: aCardName whenTurnOf: aShip [
 
 	| card cardToBePlayed |
-	(cardsInHand anySatisfy: [ :aCard | aCard hasSameTypeAs: aCardName ])
+	(cardsInHand anySatisfy: [ :aCard | aCard hasAsEffect: aCardName ])
 		ifFalse: [ Error signal: 'The ship does not have this card' ].
 	card := cardsInHand detect: [ :aCard |
-		        aCard hasSameTypeAs: aCardName ].
+		        aCard hasAsEffect: aCardName ].
 
 	card
 		checkForTurnRequierementwhen: self
@@ -159,10 +159,10 @@ Ship >> throw: aCardName whenTurnOf: aShip [
 Ship >> throw: aCardName whenTurnOf: aShip to: aTargetShip [
 
 	| card cardToBePlayed |
-	(cardsInHand anySatisfy: [ :aCard | aCard hasSameTypeAs: aCardName ])
+	(cardsInHand anySatisfy: [ :aCard | aCard hasAsEffect: aCardName ])
 		ifFalse: [ Error signal: 'The ship does not have this card' ].
 	card := cardsInHand detect: [ :aCard |
-		        aCard hasSameTypeAs: aCardName ].
+		        aCard hasAsEffect: aCardName ].
 
 	card
 		checkForTurnRequierementwhen: self
@@ -179,10 +179,10 @@ Ship >> throw: aCardName whenTurnOf: aShip to: aTargetShip [
 Ship >> throw: aCardName whenTurnOf: aShip to: aTargetShip whoPlayed: aTargetCardName [
 
 	| card cardToBePlayed |
-	(cardsInHand anySatisfy: [ :aCard | aCard hasSameTypeAs: aCardName ])
+	(cardsInHand anySatisfy: [ :aCard | aCard hasAsEffect: aCardName ])
 		ifFalse: [ Error signal: 'The ship does not have this card' ].
 	card := cardsInHand detect: [ :aCard |
-		        aCard hasSameTypeAs: aCardName ].
+		        aCard hasAsEffect: aCardName ].
 
 	card checkForTurnRequierementwhen: self playsACardDuringTheTurnOf: aShip.
 	

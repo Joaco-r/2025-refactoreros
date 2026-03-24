@@ -36,9 +36,9 @@ AccelerationEffect >> initializeWith: anAccelerationValue [
 ]
 
 { #category : 'accessing' }
-AccelerationEffect >> isCalled: aName [
+AccelerationEffect >> isCalled: anEffectName [
 
-	^ 'Acceleration Card' = aName
+	^ 'Acceleration Card' = anEffectName
 ]
 
 { #category : 'as yet unclassified' }

@@ -43,9 +43,9 @@ CancellationEffect >> intializeTargetedTo: aTargetShip whoPlayed: aTargetCardNam
 ]
 
 { #category : 'testing' }
-CancellationEffect >> isCalled: aName [
+CancellationEffect >> isCalled: anEffectName [
 
-	^ 'Cancellation Card' = aName
+	^ 'Cancellation Card' = anEffectName
 ]
 
 { #category : 'as yet unclassified' }
