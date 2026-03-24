@@ -3,7 +3,7 @@ A square that resets all ships positions (a dictionary: 'shipName' -> position) 
 "
 Class {
 	#name : 'BlackHoleSquare',
-	#superclass : 'Object',
+	#superclass : 'EmptySquare',
 	#category : 'IngSoft2-Model-SquareType',
 	#package : 'IngSoft2-Model',
 	#tag : 'SquareType'
@@ -13,5 +13,4 @@ Class {
 BlackHoleSquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: aShipManager [
 
 	aShip moveBackwardsBy: 4.
-	aShipManager checkBattles: aShip on: aBoard 
 ]

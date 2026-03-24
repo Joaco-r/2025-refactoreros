@@ -3,7 +3,7 @@ A square that makes the ship advances M parsecs forward, following list values.
 "
 Class {
 	#name : 'HyperJumpSquare',
-	#superclass : 'Object',
+	#superclass : 'EmptySquare',
 	#instVars : [
 		'rewards',
 		'currentRewardIndex'
@@ -20,7 +20,7 @@ HyperJumpSquare class >> checkRewards: aParsecsList [
 		Error signal: 'Parsec rewards cannot be empty' ]
 ]
 
-{ #category : 'actions' }
+{ #category : 'instance creation' }
 HyperJumpSquare class >> withRewards: aSetOfDistances [
 
 	self checkRewards: aSetOfDistances.
@@ -40,7 +40,6 @@ HyperJumpSquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: 
 	currentRewardIndex > rewards size ifTrue: [
 		currentRewardIndex := 1 ].
 
-	aShipManager checkBattles: aShip on: aBoard
 ]
 
 { #category : 'initialization' }

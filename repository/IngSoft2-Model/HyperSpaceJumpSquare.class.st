@@ -3,7 +3,7 @@ A square that increases landed ship position in ""4"" squares. (Positions: a dic
 "
 Class {
 	#name : 'HyperSpaceJumpSquare',
-	#superclass : 'Object',
+	#superclass : 'EmptySquare',
 	#category : 'IngSoft2-Model-SquareType',
 	#package : 'IngSoft2-Model',
 	#tag : 'SquareType'
@@ -14,5 +14,4 @@ HyperSpaceJumpSquare >> applyEffectTo: shipList forShip: aShip on: aBoard manage
 
 	aShip moveForwardBy: 4.
 	aShip breakAShield.
-	aShipManager checkBattles: aShip on: aBoard
 ]

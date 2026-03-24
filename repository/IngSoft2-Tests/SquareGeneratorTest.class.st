@@ -58,7 +58,7 @@ SquareGeneratorTest >> testB02WhenSquaresCreatedFollowTheProbabilityDistribution
 	squareCount := 10000.
 	squaresWithProbability := Dictionary new.
 	squaresWithProbability at: EmptySquare new put:0.3.
-	squaresWithProbability at: DrawCardSquare new put:0.1.
+	squaresWithProbability at: DrawCardSquare withDefaultDeck put:0.1.
 	squaresWithProbability at: BlackHoleSquare new  put:0.2.
 	squaresWithProbability at: HyperSpaceJumpSquare new put:0.2.
 	squaresWithProbability at: (MoonWalkSquare withBackwardsPush:1) put:0.1.

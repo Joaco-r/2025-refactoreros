@@ -3,7 +3,7 @@ A wormhole has an entry and an exit that both trasnform a player's ship position
 "
 Class {
 	#name : 'WormHoleSquare',
-	#superclass : 'Object',
+	#superclass : 'EmptySquare',
 	#instVars : [
 		'entrancePosition',
 		'exitPosition'
@@ -27,7 +27,7 @@ WormHoleSquare class >> checkEntrance: anEntrancePosition isBeforeExit: anExitPo
 		Error signal: 'Entrace should be located before exit' ]
 ]
 
-{ #category : 'initialization' }
+{ #category : 'instance creation' }
 WormHoleSquare class >> withEntranceAt: anEntrancePosition andExitAt: anExitPosition [
 
 	self
@@ -48,12 +48,10 @@ WormHoleSquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: a
 
 	currentPosition = entrancePosition
 		ifTrue: [ aShip moveForwardBy: exitPosition - entrancePosition ]
-		ifFalse: [ aShip moveBackwardsBy: exitPosition - entrancePosition ].
-
-	aShipManager checkBattles: aShip on: aBoard
+		ifFalse: [ aShip moveBackwardsBy: exitPosition - entrancePosition ]
 ]
 
-{ #category : 'accessing' }
+{ #category : 'initialization' }
 WormHoleSquare >> intializewithEntranceAt: anEntrancePosition andExitAt: anExitPosition [
 
 	entrancePosition := anEntrancePosition.

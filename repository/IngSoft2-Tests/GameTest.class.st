@@ -731,7 +731,7 @@ GameTest >> testC02WhenShipLandsOnDrawCardSquareThenItObtainsANewCard [
 	aSetOfSquares := {
 		                 EmptySquare new.
 		                 EmptySquare new.
-		                 DrawCardSquare new.
+		                 DrawCardSquare withDefaultDeck.
 		                 EmptySquare new } asOrderedCollection.
 
 	aBoard := Board

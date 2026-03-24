@@ -120,7 +120,9 @@ ShipManager >> landShip: aShip atSquare: nextSquare on: aBoard [
 		applyEffectTo: gameShips
 		forShip: aShip
 		on: aBoard
-		managedBy: self
+		managedBy: self.
+
+	nextSquare checkIf: aShip shouldBattleOn: aBoard managedBy: self
 ]
 
 { #category : 'actions' }
