@@ -41,7 +41,7 @@ Ship >> breakAShield [
 { #category : 'accessing' }
 Ship >> cardsInHand [
 
-	^ cardsInHand collect: [ :card | card name ]
+	^ cardsInHand collect: [ :card | card ]
 ]
 
 { #category : 'actions' }
@@ -136,33 +136,59 @@ Ship >> shields [
 { #category : 'actions' }
 Ship >> throw: aCardName whenTurnOf: aShip [
 
-	| card |
-	(cardsInHand anySatisfy: [ :aCard | aCard name = aCardName ])
+	| card cardToBePlayed |
+	(cardsInHand anySatisfy: [ :aCard | aCard hasAsEffect: aCardName ])
 		ifFalse: [ Error signal: 'The ship does not have this card' ].
-	card := cardsInHand detect: [ :aCard | aCard name = aCardName ].
+	card := cardsInHand detect: [ :aCard |
+		        aCard hasAsEffect: aCardName ].
 
-	(card isPermanent and: self playerName ~= aShip playerName) ifTrue: [
-		Error signal:
-			'The ship is trying to use a permanent card out of its turn' ].
+	card
+		checkForTurnRequierementwhen: self
+		playsACardDuringTheTurnOf: aShip.
+	card checkIfTargetShipNeeded.
+	card checkIfTargetCardNeeded.
 
+
+	cardToBePlayed := card playedBy: self.
 	cardsInHand remove: card.
 
-	^ card class ownedBy: self
+	^ cardToBePlayed
 ]
 
 { #category : 'actions' }
 Ship >> throw: aCardName whenTurnOf: aShip to: aTargetShip [
 
-	| card |
-	(cardsInHand anySatisfy: [ :aCard | aCard name = aCardName ])
+	| card cardToBePlayed |
+	(cardsInHand anySatisfy: [ :aCard | aCard hasAsEffect: aCardName ])
 		ifFalse: [ Error signal: 'The ship does not have this card' ].
-	card := cardsInHand detect: [ :aCard | aCard name = aCardName ].
+	card := cardsInHand detect: [ :aCard |
+		        aCard hasAsEffect: aCardName ].
 
-	(card isPermanent and: self playerName ~= aShip playerName) ifTrue: [
-		Error signal:
-			'The ship is trying to use a permanent card out of its turn' ].
+	card
+		checkForTurnRequierementwhen: self
+		playsACardDuringTheTurnOf: aShip.
+	card checkIfTargetCardNeeded.
 
+	cardToBePlayed := card playedBy: self targetedTo: aTargetShip.
 	cardsInHand remove: card.
 
-	^ card class ownedBy: self targetedTo: aTargetShip
+	^ cardToBePlayed
+]
+
+{ #category : 'actions' }
+Ship >> throw: aCardName whenTurnOf: aShip to: aTargetShip whoPlayed: aTargetCardName [
+
+	| card cardToBePlayed |
+	(cardsInHand anySatisfy: [ :aCard | aCard hasAsEffect: aCardName ])
+		ifFalse: [ Error signal: 'The ship does not have this card' ].
+	card := cardsInHand detect: [ :aCard |
+		        aCard hasAsEffect: aCardName ].
+
+	card checkForTurnRequierementwhen: self playsACardDuringTheTurnOf: aShip.
+	
+	cardToBePlayed := card playedBy: self targetedTo: aTargetShip whoPlayed: aTargetCardName.
+	
+	cardsInHand remove: card.
+
+	^ cardToBePlayed
 ]

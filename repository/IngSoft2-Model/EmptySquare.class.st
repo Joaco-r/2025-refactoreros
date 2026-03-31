@@ -12,5 +12,10 @@ Class {
 { #category : 'actions' }
 EmptySquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: aShipManager [
 
+]
+
+{ #category : 'checking' }
+EmptySquare >> checkIf: aShip shouldBattleOn: aBoard managedBy: aShipManager [
+
 	aShipManager checkBattles: aShip on: aBoard
 ]

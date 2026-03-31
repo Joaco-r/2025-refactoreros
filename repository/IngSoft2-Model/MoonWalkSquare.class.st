@@ -3,7 +3,7 @@ A squares that move all ships but the one who land here backwards N squares.
 "
 Class {
 	#name : 'MoonWalkSquare',
-	#superclass : 'Object',
+	#superclass : 'EmptySquare',
 	#instVars : [
 		'backwardsPush'
 	],
@@ -20,7 +20,7 @@ MoonWalkSquare class >> checkValidBackwardsPushNumber: squaresToPushBackwards [
 			'Squares to push backwards must be equal or higher than 1' ]
 ]
 
-{ #category : 'accessing' }
+{ #category : 'instance creation' }
 MoonWalkSquare class >> withBackwardsPush: aNumberOfSquares [
 
 	self checkValidBackwardsPushNumber: aNumberOfSquares.
@@ -32,11 +32,10 @@ MoonWalkSquare class >> withBackwardsPush: aNumberOfSquares [
 MoonWalkSquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: aShipManager [
 
 	shipList do: [ :ship |
-		ship = aShip ifFalse: [ ship moveBackwardsBy: backwardsPush ] ].
-	aShipManager checkBattles: aShip on: aBoard
+		ship = aShip ifFalse: [ ship moveBackwardsBy: backwardsPush ] ]
 ]
 
-{ #category : 'accessing' }
+{ #category : 'initialization' }
 MoonWalkSquare >> initializeWithBackwardsPush: aNumberOfSquares [
 
 	backwardsPush := aNumberOfSquares

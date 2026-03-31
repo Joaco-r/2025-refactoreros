@@ -75,12 +75,6 @@ Board >> parsecsPerSquare [
 ]
 
 { #category : 'actions' }
-Board >> rollDice [
-
-	^ (dice collect: [ :die | die roll ]) sum
-]
-
-{ #category : 'actions' }
 Board >> rollDiceFor: aShip with: activeCards [
 
 	| extraPointsForThrow diceResult |
