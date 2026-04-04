@@ -189,6 +189,19 @@ Game >> applyRepeatTo: aTarget [
 	shipManager landShip: targetedShip atSquare: nextSquare on: board
 ]
 
+{ #category : 'actions' }
+Game >> applyReversalTo: aTargetShip whoPlayed: aTargetCardName [
+
+	| cardToBeReversed |
+	(activeCards anySatisfy: [ :aCard |
+		 aCard is: aTargetCardName ownedBy: aTargetShip ]) ifFalse: [
+		Error signal: 'Targeted Card is not within active permanent cards' ].
+
+	cardToBeReversed := activeCards detect: [ :aCard |
+		                     aCard is: aTargetCardName ownedBy: aTargetShip ].
+	cardToBeReversed reverseEffect.
+]
+
 { #category : 'accessing' }
 Game >> cardsInHandOf: aShipName [
 

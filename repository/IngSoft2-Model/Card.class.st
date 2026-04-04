@@ -6,7 +6,8 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'owner',
-		'effect'
+		'effect',
+		'isReversed'
 	],
 	#category : 'IngSoft2-Model-Card',
 	#package : 'IngSoft2-Model',
@@ -57,6 +58,14 @@ Card class >> repeatWithoutOwner [
 		  causing: (RepeatEffect targetedTo: nil)
 ]
 
+{ #category : 'as yet unclassified' }
+Card class >> reversalWithoutOwner [
+
+	^ self new
+		  initializeOwnedBy: nil
+		  causing: (ReversalEffect targetTo: nil whoPlayed: nil)
+]
+
 { #category : 'instance creation' }
 Card class >> speedWithoutOwner [
 
@@ -79,7 +88,8 @@ Card >> applyOnPlayed: aGame to: aTargetShip [
 { #category : 'actions' }
 Card >> applyThrowEffectFor: aShip [
 
-	^ (effect applyThrowEffectFor: aShip)
+	isReversed ifTrue: [ ^ effect applyReversedThrowEffectFor: aShip ].
+	^ effect applyThrowEffectFor: aShip
 ]
 
 { #category : 'as yet unclassified' }
@@ -122,7 +132,7 @@ Card >> initializeOwnedBy: aShip causing: anEffect [
 
 	owner := aShip.
 	effect := anEffect.
-	
+	isReversed := false
 ]
 
 { #category : 'testing' }
@@ -153,4 +163,10 @@ Card >> playedBy: aShip targetedTo: aTargetShip whoPlayed: aTargetCardName [
 	^ self class
 		  ownedBy: aShip
 		  causing: (effect targetTo: aTargetShip whoPlayed: aTargetCardName)
+]
+
+{ #category : 'as yet unclassified' }
+Card >> reverseEffect [
+
+	isReversed := isReversed not.
 ]

@@ -19,10 +19,19 @@ SpeedEffect class >> ofValue: aSpeedValue targetedTo: aTarget [
 	^ self new initializeWithSpeedValue: aSpeedValue and: aTarget
 ]
 
+{ #category : 'as yet unclassified' }
+SpeedEffect >> applyReversedThrowEffectFor: aShip [
+
+	aShip = targetShip ifTrue: [ ^ -1 ].
+
+	^ 0
+]
+
 { #category : 'actions' }
 SpeedEffect >> applyThrowEffectFor: aShip [
 
 	aShip = targetShip ifTrue: [ ^ 1 ].
+
 	^ 0
 ]
 
@@ -42,8 +51,10 @@ SpeedEffect >> checkIfTargetShipNeeded [
 
 { #category : 'initialization' }
 SpeedEffect >> initializeWithSpeedValue: aSpeedValue and: aTargetShip [
+
 	speedValue := aSpeedValue.
-	targetShip := aTargetShip
+	targetShip := aTargetShip.
+
 ]
 
 { #category : 'accessing' }
