@@ -2478,3 +2478,87 @@ GameTest >> testC47WhenAReversalCardIsPlayedOnASpeedCardThenTheOwnerOfTheSpeedCa
 
 	self assert: (aGame positionOf: 'Player 1') equals: 3.
 ]
+
+{ #category : 'tests' }
+GameTest >> testC48WhenAReversalCardIsPlayedOnAAccelerationCardThenAllPlayersReceiveTheReversedAccelerationEffect [
+
+	| aGame dice squareGenerator shipNames aBoard aBoardSize aDeckOfCards |
+	aBoardSize := 10.
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 3 5 7 )).
+	squareGenerator := SquareGenerator withOnlyEmptySquares.
+	aBoard := Board
+		          populatedBy: squareGenerator
+		          anAmountOf: aBoardSize
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card accelerationWithoutOwner .
+		                Card accelerationWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+
+	aGame throw: 'Acceleration Card' from: 'Player 1'.
+	aGame throw: 'Reversal Card' from: 'Player 2'  to: 'Player 1' whoPlayed: 'Acceleration Card'.
+	aGame play.
+	aGame play.
+	aGame play.
+
+	self assert: (aGame positionOf: 'Player 1') equals: 3.
+	self assert: (aGame positionOf: 'Player 2') equals: 5.
+	self assert: (aGame positionOf: 'Player 3') equals: 7.
+]
+
+{ #category : 'tests' }
+GameTest >> testC49WhenAReversalCardIsPlayedForAMercenaryCardThenTheMercenaryHelpsTheOpponentInBatlle [
+
+	| aGame dice squareGenerator shipNames aBoard aBoardSize aDeckOfCards |
+	aBoardSize := 10.
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 2 3 10 1 3 3 5 )).
+	squareGenerator := SquareGenerator withOnlyEmptySquares.
+	aBoard := Board
+		          populatedBy: squareGenerator
+		          anAmountOf: aBoardSize
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card mercenaryWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card reversalWithoutOwner .
+		                Card reversalWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner }
+		                asOrderedCollection.
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+
+	aGame
+		throw: 'Mercenary Card'
+		from: 'Player 1'
+		to: 'Player 3'.
+	aGame throw: 'Reversal Card' from: 'Player 2'  to: 'Player 1'  whoPlayed: 'Mercenary Card'.
+	aGame play.
+	aGame play.
+	aGame play.
+	aGame play.
+
+	self assert: (aGame positionOf: 'Player 1') equals: 1.
+	self assert: (aGame positionOf: 'Player 2') equals: 4
+]

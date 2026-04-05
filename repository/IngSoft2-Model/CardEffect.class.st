@@ -14,6 +14,12 @@ CardEffect >> applyMercenaryEffectFor: aShip in: aListMercenaries from: cardOwne
 CardEffect >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
 ]
 
+{ #category : 'as yet unclassified' }
+CardEffect >> applyReversedThrowEffectFor: aShip [
+
+	^ 0
+]
+
 { #category : 'actions' }
 CardEffect >> applyThrowEffectFor: aShip [
 	^ 0

@@ -30,6 +30,13 @@ MercenaryEffect >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
 ]
 
 { #category : 'as yet unclassified' }
+MercenaryEffect >> applyReversedMercenaryEffectFor: aShip battling: antherShip in: aListMercenaries from: cardOwner [
+
+
+	antherShip = cardOwner ifTrue: [ aListMercenaries add: targetShip ]
+]
+
+{ #category : 'as yet unclassified' }
 MercenaryEffect >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: anotherShip [
 
 	aShip ~= anotherShip ifTrue: [

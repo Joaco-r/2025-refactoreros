@@ -75,6 +75,14 @@ Card class >> speedWithoutOwner [
 ]
 
 { #category : 'actions' }
+Card >> applyMercenaryEffectFor: aShip battling: antherShip in: shipWithMercenaries [
+
+	isReversed ifTrue: [  
+		^ effect applyReversedMercenaryEffectFor: aShip battling: antherShip in: shipWithMercenaries from: owner].
+	^ effect applyMercenaryEffectFor: aShip in: shipWithMercenaries from: owner
+]
+
+{ #category : 'actions' }
 Card >> applyMercenaryEffectFor: aShip in: shipWithMercenaries [
 	^ (effect applyMercenaryEffectFor: aShip in: shipWithMercenaries from: owner)
 ]

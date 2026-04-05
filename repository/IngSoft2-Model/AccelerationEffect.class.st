@@ -17,6 +17,12 @@ AccelerationEffect class >> ofValue: anAccelerationValue [
 	^ self new initializeWith: anAccelerationValue 
 ]
 
+{ #category : 'as yet unclassified' }
+AccelerationEffect >> applyReversedThrowEffectFor: aShip [
+
+	^ -1
+]
+
 { #category : 'actions' }
 AccelerationEffect >> applyThrowEffectFor: aShip [
 	^ 1
