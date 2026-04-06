@@ -2562,3 +2562,151 @@ GameTest >> testC49WhenAReversalCardIsPlayedForAMercenaryCardThenTheMercenaryHel
 	self assert: (aGame positionOf: 'Player 1') equals: 1.
 	self assert: (aGame positionOf: 'Player 2') equals: 4
 ]
+
+{ #category : 'tests' }
+GameTest >> testC50WhenAReversalCardIsPlayedWithoutATargetShipThenItFails [
+
+	| aGame dice squareGenerator shipNames aBoard aBoardSize aDeckOfCards |
+	aBoardSize := 10.
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 3 5 7 )).
+	squareGenerator := SquareGenerator withOnlyEmptySquares.
+	aBoard := Board
+		          populatedBy: squareGenerator
+		          anAmountOf: aBoardSize
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+
+	aGame throw: 'Speed Card' from: 'Player 1' to: 'Player 1'.
+
+	self
+		should: [ aGame throw: 'Reversal Card' from: 'Player 2' ]
+		raise: Error
+		withMessageText: 'Reversal Card requiers a target ship.'
+]
+
+{ #category : 'tests' }
+GameTest >> testC51WhenAReversalCardIsPlayedWithoutACardShipThenItFails [
+
+	| aGame dice squareGenerator shipNames aBoard aBoardSize aDeckOfCards |
+	aBoardSize := 10.
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 3 5 7 )).
+	squareGenerator := SquareGenerator withOnlyEmptySquares.
+	aBoard := Board
+		          populatedBy: squareGenerator
+		          anAmountOf: aBoardSize
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+
+	aGame throw: 'Speed Card' from: 'Player 1' to: 'Player 1'.
+
+	self
+		should: [ aGame throw: 'Reversal Card' from: 'Player 2' to: 'Player 1']
+		raise: Error
+		withMessageText: 'Reversal Card requiers a target card.'
+]
+
+{ #category : 'tests' }
+GameTest >> testC52WhenAReversalCardIsPlayedTargetingACardThatHasNotBeenPlayedThenItFails [
+
+	| aGame dice squareGenerator shipNames aBoard aBoardSize aDeckOfCards |
+	aBoardSize := 10.
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 3 5 7 )).
+	squareGenerator := SquareGenerator withOnlyEmptySquares.
+	aBoard := Board
+		          populatedBy: squareGenerator
+		          anAmountOf: aBoardSize
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+
+	aGame throw: 'Speed Card' from: 'Player 1' to: 'Player 1'.
+
+	self
+		should: [ aGame throw: 'Reversal Card' from: 'Player 2' to: 'Player 1' whoPlayed: 'Acceleration Card']
+		raise: Error
+		withMessageText: 'Targeted Card is not within active permanent cards'
+]
+
+{ #category : 'tests' }
+GameTest >> testC53WhenAReversalCardIsTargetedToANonPermanentCardThenItFails [
+
+	| aGame dice squareGenerator shipNames aBoard aBoardSize aDeckOfCards |
+	aBoardSize := 10.
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 3 5 7 )).
+	squareGenerator := SquareGenerator withOnlyEmptySquares.
+	aBoard := Board
+		          populatedBy: squareGenerator
+		          anAmountOf: aBoardSize
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card repeatWithoutOwner .
+		                Card repeatWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+	aGame play.
+	aGame throw: 'Repeat Card' from: 'Player 1' to: 'Player 1'.
+
+	self
+		should: [ aGame throw: 'Reversal Card' from: 'Player 2' to: 'Player 1' whoPlayed: 'Redo Card']
+		raise: Error
+		withMessageText: 'Targeted Card is not within active permanent cards'
+]
