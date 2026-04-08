@@ -161,8 +161,7 @@ Ship >> throw: aCardName whenTurnOf: aShip to: aTargetShip [
 	| card cardToBePlayed |
 	(cardsInHand anySatisfy: [ :aCard | aCard hasAsEffect: aCardName ])
 		ifFalse: [ Error signal: 'The ship does not have this card' ].
-	card := cardsInHand detect: [ :aCard |
-		        aCard hasAsEffect: aCardName ].
+	card := cardsInHand detect: [ :aCard | aCard hasAsEffect: aCardName ].
 
 	card
 		checkForTurnRequierementwhen: self

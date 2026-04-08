@@ -66,6 +66,14 @@ Card class >> reversalWithoutOwner [
 		  causing: (ReversalEffect targetTo: nil whoPlayed: nil)
 ]
 
+{ #category : 'as yet unclassified' }
+Card class >> reversePolarityWithoutOwner [
+
+	^ self new
+		  initializeOwnedBy: nil
+		  causing: (ReversePolarityEffect new)
+]
+
 { #category : 'instance creation' }
 Card class >> speedWithoutOwner [
 

@@ -330,7 +330,7 @@ GameTest >> testB06WhenAShipLandsOnAtomicBombThenAllShipsGoBackToFirstSquare [
 		                 EmptySquare new.
 		                 EmptySquare new.
 		                 EmptySquare new.
-		                 AtomicBombSquare new.
+		                 AtomicBombSquare withDefaultPolarity.
 		                 EmptySquare new } asOrderedCollection.
 
 	aBoard := Board
@@ -359,7 +359,7 @@ GameTest >> testB07WhenAShipLandsOnAtomicBombThenAllShipsLoseAShield [
 		                 EmptySquare new.
 		                 EmptySquare new.
 		                 EmptySquare new.
-		                 AtomicBombSquare new.
+		                 AtomicBombSquare withDefaultPolarity.
 		                 EmptySquare new.
 		                 EmptySquare new } asOrderedCollection.
 
@@ -2709,4 +2709,39 @@ GameTest >> testC53WhenAReversalCardIsTargetedToANonPermanentCardThenItFails [
 		should: [ aGame throw: 'Reversal Card' from: 'Player 2' to: 'Player 1' whoPlayed: 'Redo Card']
 		raise: Error
 		withMessageText: 'Targeted Card is not within active permanent cards'
+]
+
+{ #category : 'tests' }
+GameTest >> testC54 [
+
+	| aGame dice aSetOfSquares shipNames aBoard aDeckOfCards |
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 1 )).
+	aSetOfSquares := {
+		                 EmptySquare new.
+		                 AtomicBombSquare withDefaultPolarity.
+		                 EmptySquare new.
+		                 EmptySquare new } asOrderedCollection.
+
+	aBoard := Board
+		          populatedOf: aSetOfSquares
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' ).
+
+	aDeckOfCards := {
+		                Card reversePolarityWithoutOwner.
+		                Card reversePolarityWithoutOwner }
+		                asOrderedCollection.
+
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 2.
+	aGame play.
+
+	self assert: (aGame positionOf: 'Player 1') equals: 2
 ]

@@ -42,7 +42,7 @@ SquareGeneratorTest >> testB01WhenASquareGeneratorCreatesSquareAndSquareListSize
 	squaresWithProbability at: HyperSpaceJumpSquare new put: 0.2.
 	squaresWithProbability at: (MoonWalkSquare withBackwardsPush: 1) put: 0.1.
 	squaresWithProbability at: (HyperJumpSquare withRewards: { LightYear amount: 18}) put: 0.08.
-	squaresWithProbability at: AtomicBombSquare new put: 0.02.
+	squaresWithProbability at: AtomicBombSquare withDefaultPolarity put: 0.02.
 
 
 	squareGenerator := SquareGenerator with: squaresWithProbability.
@@ -63,7 +63,7 @@ SquareGeneratorTest >> testB02WhenSquaresCreatedFollowTheProbabilityDistribution
 	squaresWithProbability at: HyperSpaceJumpSquare new put:0.2.
 	squaresWithProbability at: (MoonWalkSquare withBackwardsPush:1) put:0.1.
 	squaresWithProbability at: (HyperJumpSquare withRewards: { LightYear amount: 18}) put:0.08.
-	squaresWithProbability at: AtomicBombSquare new put:0.02.
+	squaresWithProbability at: AtomicBombSquare withDefaultPolarity put:0.02.
 
 	squareGenerator := SquareGenerator with: squaresWithProbability.
 	squareList := squareGenerator createSquares: squareCount.
@@ -133,7 +133,7 @@ SquareGeneratorTest >> testB05WhenTotalProbabilityIsLargerThanOneThenItFails [
 	squaresWithProbability at: HyperSpaceJumpSquare new put: 0.2.
 	squaresWithProbability at: (MoonWalkSquare withBackwardsPush: 1) put: 0.1.
 	squaresWithProbability at: (HyperJumpSquare withRewards:{ Parsec amount: 18}) put: 0.8.
-	squaresWithProbability at: AtomicBombSquare new put: 0.9.
+	squaresWithProbability at: AtomicBombSquare withDefaultPolarity put: 0.9.
 
 
 	self

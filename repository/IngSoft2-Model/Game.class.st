@@ -202,6 +202,14 @@ Game >> applyReversalTo: aTargetShip whoPlayed: aTargetCardName [
 	cardToBeReversed reverseEffect.
 ]
 
+{ #category : 'as yet unclassified' }
+Game >> applyReversePolarityFor: aSquareNumber [
+	| squareToBeReversed |
+	
+	squareToBeReversed := board squareAt: aSquareNumber.
+	squareToBeReversed reverseSquareEffect.
+]
+
 { #category : 'accessing' }
 Game >> cardsInHandOf: aShipName [
 
@@ -336,6 +344,20 @@ Game >> throw: aCardName from: aShipName [
 	card := queriedShip throw: aCardName whenTurnOf: (ships at: 1).
 	
 	card applyOnPlayed: self to: ''.
+	activeCards addFirst: card.
+]
+
+{ #category : 'actions' }
+Game >> throw: aCardName from: aShipName pointingTo: aSquareNumber [
+
+	| queriedShip card |
+	queriedShip := self searchShipByName: aShipName.
+
+	
+	card := queriedShip throw: aCardName whenTurnOf: (ships at: 1).
+	
+	
+	card applyOnPlayed: self to: aSquareNumber.
 	activeCards addFirst: card.
 ]
 

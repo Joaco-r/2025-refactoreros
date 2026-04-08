@@ -19,3 +19,7 @@ EmptySquare >> checkIf: aShip shouldBattleOn: aBoard managedBy: aShipManager [
 
 	aShipManager checkBattles: aShip on: aBoard
 ]
+
+{ #category : 'as yet unclassified' }
+EmptySquare >> reverseSquareEffect [
+]
