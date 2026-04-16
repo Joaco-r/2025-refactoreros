@@ -3061,3 +3061,39 @@ GameTest >> testC62WhenAReversePolarityIsPlayedForAnEmptySquareThenItRemainsTheS
 	self assert: (aGame positionOf: 'Player 1') equals: 2.
 
 ]
+
+{ #category : 'tests' }
+GameTest >> testC63WhenAReversePolarityIsPlayedTwiceForTheSameSquareThenTheSquareReturnsToItsOriginalEffect [
+
+	| aGame dice aSetOfSquares shipNames aBoard aDeckOfCards |
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 1 )).
+	aSetOfSquares := {
+		                 Square empty.
+		                 AtomicBombSquare withDefaultPolarity.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
+
+	aBoard := Board
+		          populatedOf: aSetOfSquares
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' ).
+
+	aDeckOfCards := {
+		                Card reversePolarityWithoutOwner.
+		                Card reversePolarityWithoutOwner }
+		                asOrderedCollection.
+
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 2.
+	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 2.
+	aGame play.
+
+	self assert: (aGame positionOf: 'Player 1') equals: 1
+]
