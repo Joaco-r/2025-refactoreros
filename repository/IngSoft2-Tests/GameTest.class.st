@@ -2941,3 +2941,85 @@ GameTest >> testC59WhenAReversePolarityCardIsPlayedForADrawCardSquareThenWhenTri
 	self assert: (aGame cardsInHandOf: 'Player 2') size equals: 3.
 	self assert: (aGame cardsInHandOf: 'Player 3') size equals: 3
 ]
+
+{ #category : 'tests' }
+GameTest >> testC60WhenAReversePolarityCardIsPlayedForAWormHoleSquareAndAShipLandsInTheEntranceThenOtherShipsMoveToTheOtherEnd [
+
+	| aGame dice aSetOfSquares shipNames aBoard aDeckOfCards |
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 1 )).
+	aSetOfSquares := {
+		                 EmptySquare new.
+		                 (WormHoleSquare withEntranceAt: 2 andExitAt: 5).
+		                 EmptySquare new.
+		                 EmptySquare new.
+		                 (WormHoleSquare withEntranceAt: 2 andExitAt: 5).
+		                 EmptySquare new } asOrderedCollection.
+
+	aBoard := Board
+		          populatedOf: aSetOfSquares
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card reversePolarityWithoutOwner.
+		                Card reversePolarityWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 2.
+	aGame play.
+	self assert: (aGame positionOf: 'Player 1') equals: 2.
+	self assert: (aGame positionOf: 'Player 2') equals: 5.
+	self assert: (aGame positionOf: 'Player 3') equals: 5
+]
+
+{ #category : 'tests' }
+GameTest >> testC61WhenAReversePolarityCardIsPlayedForAWormHoleSquareAndAShipLandsInTheExitThenOtherShipsMoveToTheOtherEnd [
+
+	| aGame dice aSetOfSquares shipNames aBoard aDeckOfCards |
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 4 )).
+	aSetOfSquares := {
+		                 EmptySquare new.
+		                 (WormHoleSquare withEntranceAt: 2 andExitAt: 5).
+		                 EmptySquare new.
+		                 EmptySquare new.
+		                 (WormHoleSquare withEntranceAt: 2 andExitAt: 5).
+		                 EmptySquare new } asOrderedCollection.
+
+	aBoard := Board
+		          populatedOf: aSetOfSquares
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card reversePolarityWithoutOwner.
+		                Card reversePolarityWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 5.
+	aGame play.
+	self assert: (aGame positionOf: 'Player 1') equals: 5.
+	self assert: (aGame positionOf: 'Player 2') equals: 2.
+	self assert: (aGame positionOf: 'Player 3') equals: 2
+]

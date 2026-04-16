@@ -46,14 +46,49 @@ WormHoleSquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: a
 	| currentPosition |
 	currentPosition := aShip boardPosition.
 
-	currentPosition = entrancePosition
-		ifTrue: [ aShip moveForwardBy: exitPosition - entrancePosition ]
-		ifFalse: [ aShip moveBackwardsBy: exitPosition - entrancePosition ]
+	isReversed
+		ifFalse: [
+			currentPosition = entrancePosition
+				ifTrue: [ aShip moveForwardBy: exitPosition - entrancePosition ]
+				ifFalse: [ aShip moveBackwardsBy: exitPosition - entrancePosition ] ]
+		ifTrue: [ self applyReversedEffectTo: shipList forShip: aShip using: currentPosition]
+]
+
+{ #category : 'as yet unclassified' }
+WormHoleSquare >> applyReversedEffectTo: shipList forShip: aShip using: currentPosition [
+
+	| shipsOwnPosition |
+	shipList do: [ :ship |
+		ship = aShip ifFalse: [
+			shipsOwnPosition := ship boardPosition.
+			currentPosition = entrancePosition
+				ifTrue: [
+				self moveOtherShip: ship toExitWhenLocatedAt: shipsOwnPosition ]
+				ifFalse: [
+				self moveOtherShip: ship toEntranceWhenLocatedAt: shipsOwnPosition ] ] ]
 ]
 
 { #category : 'initialization' }
 WormHoleSquare >> intializewithEntranceAt: anEntrancePosition andExitAt: anExitPosition [
 
 	entrancePosition := anEntrancePosition.
-	exitPosition := anExitPosition
+	exitPosition := anExitPosition.
+	isReversed := false
+]
+
+{ #category : 'accessing' }
+WormHoleSquare >> moveOtherShip: aShip toEntranceWhenLocatedAt: aShipsPosition [
+
+	aShipsPosition < entrancePosition
+		ifTrue: [ aShip moveForwardBy: entrancePosition - aShipsPosition ]
+		ifFalse: [
+		aShipsPosition moveBackwardsBy: aShipsPosition - entrancePosition ]
+]
+
+{ #category : 'accessing' }
+WormHoleSquare >> moveOtherShip: aShip toExitWhenLocatedAt: aShipsPosition [
+	aShipsPosition < exitPosition 
+		ifTrue: [ aShip moveForwardBy: exitPosition - aShipsPosition ]
+		ifFalse: [
+		aShipsPosition moveBackwardsBy: aShipsPosition - exitPosition ]
 ]
