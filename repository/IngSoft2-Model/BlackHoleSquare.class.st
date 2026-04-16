@@ -3,7 +3,7 @@ A square that resets all ships positions (a dictionary: 'shipName' -> position) 
 "
 Class {
 	#name : 'BlackHoleSquare',
-	#superclass : 'EmptySquare',
+	#superclass : 'Square',
 	#instVars : [
 		'backwardsPush'
 	],

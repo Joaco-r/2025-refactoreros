@@ -3,7 +3,7 @@ A square that makes the ship advances M parsecs forward, following list values.
 "
 Class {
 	#name : 'HyperJumpSquare',
-	#superclass : 'EmptySquare',
+	#superclass : 'Square',
 	#instVars : [
 		'rewards',
 		'currentRewardIndex'

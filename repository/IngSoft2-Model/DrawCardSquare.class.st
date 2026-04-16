@@ -3,7 +3,7 @@ A square that gives a new random card to a ship
 "
 Class {
 	#name : 'DrawCardSquare',
-	#superclass : 'EmptySquare',
+	#superclass : 'Square',
 	#instVars : [
 		'deck'
 	],

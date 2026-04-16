@@ -2,7 +2,7 @@
 A square that doesn't affect ships positions (a dictionary: 'shipName' -> position; positions from current lap, since this object doesn't receive lap information)
 "
 Class {
-	#name : 'EmptySquare',
+	#name : 'Square',
 	#superclass : 'Object',
 	#instVars : [
 		'isReversed'
@@ -13,28 +13,28 @@ Class {
 }
 
 { #category : 'as yet unclassified' }
-EmptySquare class >> withDefaultPolarity [
+Square class >> empty [
 	^ self new initializeWithDefaultPolarity
 ]
 
 { #category : 'actions' }
-EmptySquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: aShipManager [
+Square >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: aShipManager [
 
 ]
 
 { #category : 'checking' }
-EmptySquare >> checkIf: aShip shouldBattleOn: aBoard managedBy: aShipManager [
+Square >> checkIf: aShip shouldBattleOn: aBoard managedBy: aShipManager [
 
 	aShipManager checkBattles: aShip on: aBoard
 ]
 
 { #category : 'initialization' }
-EmptySquare >> initializeWithDefaultPolarity [
+Square >> initializeWithDefaultPolarity [
 	isReversed := false.
 ]
 
 { #category : 'as yet unclassified' }
-EmptySquare >> reverseSquareEffect [
+Square >> reverseSquareEffect [
 
 	isReversed := isReversed not
 ]

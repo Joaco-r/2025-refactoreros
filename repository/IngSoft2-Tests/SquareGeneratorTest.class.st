@@ -37,7 +37,7 @@ SquareGeneratorTest >> testB01WhenASquareGeneratorCreatesSquareAndSquareListSize
 	| squareCount squareGenerator squareList squaresWithProbability |
 	squareCount := 10000.
 	squaresWithProbability := Dictionary new.
-	squaresWithProbability at: EmptySquare new put: 0.4.
+	squaresWithProbability at: Square empty put: 0.4.
 	squaresWithProbability at: (BlackHoleSquare withBackwardsPush: 4)  put: 0.2.
 	squaresWithProbability at: (HyperSpaceJumpSquare withForwardPush: 4) put: 0.2.
 	squaresWithProbability at: (MoonWalkSquare withBackwardsPush: 1) put: 0.1.
@@ -57,7 +57,7 @@ SquareGeneratorTest >> testB02WhenSquaresCreatedFollowTheProbabilityDistribution
 	| squareCount squareGenerator squareList squaresWithProbability |
 	squareCount := 10000.
 	squaresWithProbability := Dictionary new.
-	squaresWithProbability at: EmptySquare new put:0.3.
+	squaresWithProbability at: Square empty put:0.3.
 	squaresWithProbability at: DrawCardSquare withDefaultDeck put:0.1.
 	squaresWithProbability at: (BlackHoleSquare withBackwardsPush: 4)  put:0.2.
 	squaresWithProbability at: (HyperSpaceJumpSquare withForwardPush: 4) put:0.2.
@@ -68,7 +68,7 @@ SquareGeneratorTest >> testB02WhenSquaresCreatedFollowTheProbabilityDistribution
 	squareGenerator := SquareGenerator with: squaresWithProbability.
 	squareList := squareGenerator createSquares: squareCount.
 	
-	self count: EmptySquare in: squareList closeTo: 0.3 precision: 0.05.
+	self count: Square in: squareList closeTo: 0.3 precision: 0.05.
 	self count: DrawCardSquare in: squareList closeTo: 0.1 precision: 0.05.
 	self count: BlackHoleSquare in: squareList closeTo: 0.2 precision: 0.05.
 	self count: HyperSpaceJumpSquare in: squareList closeTo: 0.2 precision: 0.05.
@@ -85,14 +85,14 @@ SquareGeneratorTest >> testB03WhenProbabilitiesDoNotAddUpToOneAndTheRemainingAre
 	| squareCount squareGenerator squareList squaresWithProbability |
 	squareCount := 10000.
 	squaresWithProbability := Dictionary new.
-	squaresWithProbability at: EmptySquare new put:0.4.
+	squaresWithProbability at: Square empty put:0.4.
 	squaresWithProbability at: (BlackHoleSquare withBackwardsPush: 4)  put:0.2.
 	squaresWithProbability at: (HyperSpaceJumpSquare withForwardPush: 4) put:0.2.
 
 	squareGenerator := SquareGenerator with: squaresWithProbability.
 	squareList := squareGenerator createSquares: squareCount.
 	
-	self count: EmptySquare in: squareList closeTo: 0.6 precision: 0.05.
+	self count: Square in: squareList closeTo: 0.6 precision: 0.05.
 	self count: BlackHoleSquare in: squareList closeTo: 0.2 precision: 0.05.
 	self count: HyperSpaceJumpSquare in: squareList closeTo: 0.2 precision: 0.05.
 
@@ -113,7 +113,7 @@ SquareGeneratorTest >> testB04WhenProbabilitiesDoNotAddUpToOneAndThereIsNoProbab
 	squareGenerator := SquareGenerator with: squaresWithProbability.
 	squareList := squareGenerator createSquares: squareCount.
 	
-	self count: EmptySquare in: squareList closeTo: 0.6 precision: 0.05.
+	self count: Square in: squareList closeTo: 0.6 precision: 0.05.
 	self count: BlackHoleSquare in: squareList closeTo: 0.2 precision: 0.05.
 	self count: HyperSpaceJumpSquare in: squareList closeTo: 0.2 precision: 0.05.
 
@@ -128,7 +128,7 @@ SquareGeneratorTest >> testB05WhenTotalProbabilityIsLargerThanOneThenItFails [
 	| squareCount squareGenerator squaresWithProbability |
 	squareCount := 100.
 	squaresWithProbability := Dictionary new.
-	squaresWithProbability at: EmptySquare new put: 0.4.
+	squaresWithProbability at: Square empty put: 0.4.
 	squaresWithProbability at: (BlackHoleSquare withBackwardsPush: 4) put: 0.2.
 	squaresWithProbability at: (HyperSpaceJumpSquare withForwardPush: 4) put: 0.2.
 	squaresWithProbability at: (MoonWalkSquare withBackwardsPush: 1) put: 0.1.

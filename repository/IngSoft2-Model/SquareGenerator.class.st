@@ -20,7 +20,7 @@ SquareGenerator class >> checkProbabilitiesAreLessThanOne: squaresAndProbability
 	probabilitySum := probabilities sum.
 
 	probabilitySum < 1 ifTrue: [
-		squaresAndProbability at: EmptySquare new put: 1 - probabilitySum ]
+		squaresAndProbability at: Square empty put: 1 - probabilitySum ]
 ]
 
 { #category : 'validation' }
@@ -48,7 +48,7 @@ SquareGenerator class >> withOnlyEmptySquares [
 
 	| squaresAndProbability |
 	squaresAndProbability := Dictionary new.
-	squaresAndProbability at: EmptySquare new put: 1.
+	squaresAndProbability at: Square empty put: 1.
 
 	^ self new initializeWith: squaresAndProbability
 ]

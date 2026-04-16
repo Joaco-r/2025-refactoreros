@@ -247,7 +247,7 @@ Game >> initializeWith: aSetOfships on: aBoard toPlayFor: aNumberOfLaps [
 	activeCards := OrderedCollection new.
 	shipManager := ShipManager withShips: ships andActiveCards: activeCards.
 	board := aBoard.	
-	nextSquare := EmptySquare new.
+	nextSquare := Square empty.
 
 ]
 

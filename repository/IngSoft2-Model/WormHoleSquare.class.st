@@ -3,7 +3,7 @@ A wormhole has an entry and an exit that both trasnform a player's ship position
 "
 Class {
 	#name : 'WormHoleSquare',
-	#superclass : 'EmptySquare',
+	#superclass : 'Square',
 	#instVars : [
 		'entrancePosition',
 		'exitPosition'

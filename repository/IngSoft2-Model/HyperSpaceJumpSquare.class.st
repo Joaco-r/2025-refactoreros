@@ -3,7 +3,7 @@ A square that increases landed ship position in ""4"" squares. (Positions: a dic
 "
 Class {
 	#name : 'HyperSpaceJumpSquare',
-	#superclass : 'EmptySquare',
+	#superclass : 'Square',
 	#instVars : [
 		'forwardPush'
 	],
