@@ -2901,3 +2901,43 @@ GameTest >> testC58WhenAReversePolarityCardIsPlayedForAMoonWalkSquareThenWhenTri
 	self assert: (aGame positionOf: 'Player 1') equals: 1.
 	self assert: (aGame positionOf: 'Player 2') equals: 5
 ]
+
+{ #category : 'tests' }
+GameTest >> testC59WhenAReversePolarityCardIsPlayedForADrawCardSquareThenWhenTriggeredEveryOtherShipDrawsACard [
+
+	| aGame dice aSetOfSquares shipNames aBoard aDeckOfCards |
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 1 )).
+	aSetOfSquares := {
+		                 EmptySquare new.
+		                 DrawCardSquare withDefaultDeck.
+		                 EmptySquare new.
+		                 EmptySquare new } asOrderedCollection.
+
+	aBoard := Board
+		          populatedOf: aSetOfSquares
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card reversePolarityWithoutOwner.
+		                Card reversePolarityWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 2.
+	aGame play.
+
+	self assert: (aGame cardsInHandOf: 'Player 1') size equals: 1.
+	self assert: (aGame cardsInHandOf: 'Player 2') size equals: 3.
+	self assert: (aGame cardsInHandOf: 'Player 3') size equals: 3
+]
