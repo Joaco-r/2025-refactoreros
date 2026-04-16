@@ -4,18 +4,10 @@ A square that resets all ships positions (a dictionary: 'shipName' -> position) 
 Class {
 	#name : 'AtomicBombSquare',
 	#superclass : 'EmptySquare',
-	#instVars : [
-		'isReversed'
-	],
 	#category : 'IngSoft2-Model-SquareType',
 	#package : 'IngSoft2-Model',
 	#tag : 'SquareType'
 }
-
-{ #category : 'as yet unclassified' }
-AtomicBombSquare class >> withDefaultPolarity [
-	^ self new initializeWithDefaultPolarity
-]
 
 { #category : 'actions' }
 AtomicBombSquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: aShipManager [
@@ -39,11 +31,6 @@ AtomicBombSquare >> applyReversedEffectTo: shipList forShip: aShip on: aBoard ma
 
 { #category : 'checking' }
 AtomicBombSquare >> checkIf: aShip shouldBattleOn: aBoard managedBy: aShipManager [
-]
-
-{ #category : 'initialization' }
-AtomicBombSquare >> initializeWithDefaultPolarity [
-	isReversed := false.
 ]
 
 { #category : 'as yet unclassified' }
