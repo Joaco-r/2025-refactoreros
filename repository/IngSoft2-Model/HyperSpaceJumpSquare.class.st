@@ -4,14 +4,42 @@ A square that increases landed ship position in ""4"" squares. (Positions: a dic
 Class {
 	#name : 'HyperSpaceJumpSquare',
 	#superclass : 'EmptySquare',
+	#instVars : [
+		'forwardPush'
+	],
 	#category : 'IngSoft2-Model-SquareType',
 	#package : 'IngSoft2-Model',
 	#tag : 'SquareType'
 }
 
+{ #category : 'as yet unclassified' }
+HyperSpaceJumpSquare class >> withForwardPush: aNumberOfSquares [
+
+	^ self new initializeWithForwardPush: aNumberOfSquares
+]
+
 { #category : 'actions' }
 HyperSpaceJumpSquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: aShipManager [
 
-	aShip moveForwardBy: 4.
-	aShip breakAShield.
+	isReversed
+		ifTrue: [ self applyReversedEffectTo: shipList forShip: aShip ]
+		ifFalse: [
+			aShip moveForwardBy: forwardPush.
+			aShip breakAShield ]
+]
+
+{ #category : 'as yet unclassified' }
+HyperSpaceJumpSquare >> applyReversedEffectTo: shipList forShip: aShip [
+
+	shipList do: [ :ship |
+		ship = aShip ifFalse: [
+			ship moveForwardBy: forwardPush.
+			ship breakAShield ] ]
+]
+
+{ #category : 'initialization' }
+HyperSpaceJumpSquare >> initializeWithForwardPush: aNumberOfSquares [
+
+	forwardPush := aNumberOfSquares.
+	isReversed := false.
 ]

@@ -12,21 +12,10 @@ Class {
 { #category : 'actions' }
 AtomicBombSquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: aShipManager [
 
-	isReversed
-		ifTrue: [
-			self
-				applyReversedEffectTo: shipList
-				forShip: aShip
-				on: aBoard
-				managedBy: aShipManager ]
-		ifFalse: [
-			shipList do: [ :ship |
-				ship goToFirstSquare.
-				ship breakAShield ] ]
-]
-
-{ #category : 'as yet unclassified' }
-AtomicBombSquare >> applyReversedEffectTo: shipList forShip: aShip on: aBoard managedBy: aShipManager [
+	isReversed ifFalse: [
+		shipList do: [ :ship |
+			ship goToFirstSquare.
+			ship breakAShield ] ]
 ]
 
 { #category : 'checking' }

@@ -416,7 +416,7 @@ GameTest >> testB09WhenAShipLandsOnHyperSpaceJumpThenItAdvances4Squares [
 	dice add: (LoadedDie withSetNumbers: #( 1 )).
 	aSetOfSquares := {
 		                 EmptySquare new.
-		                 HyperSpaceJumpSquare new.
+		                 HyperSpaceJumpSquare withForwardPush: 4.
 		                 EmptySquare new.
 		                 EmptySquare new.
 		                 EmptySquare new.
@@ -445,7 +445,7 @@ GameTest >> testB10WhenAShipLandsOnHyperSpaceJumpThenItLosesAShield [
 	dice add: (LoadedDie withSetNumbers: #( 1 )).
 	aSetOfSquares := {
 		                 EmptySquare new.
-		                 HyperSpaceJumpSquare new.
+		                 HyperSpaceJumpSquare withForwardPush: 4.
 		                 EmptySquare new.
 		                 EmptySquare new.
 		                 EmptySquare new.
@@ -2789,7 +2789,10 @@ GameTest >> testC56WhenAReversePolarityCardIsPlayedForAMoonWalkSquareThenWhenTri
 	dice add: (LoadedDie withSetNumbers: #( 1 )).
 	aSetOfSquares := {
 		                 EmptySquare new.
-		                 (MoonWalkSquare withBackwardsPush: 4).
+		                 HyperSpaceJumpSquare withForwardPush: 4.
+		                 EmptySquare new.
+		                 EmptySquare new.
+		                 EmptySquare new.
 		                 EmptySquare new.
 		                 EmptySquare new } asOrderedCollection.
 
@@ -2798,12 +2801,13 @@ GameTest >> testC56WhenAReversePolarityCardIsPlayedForAMoonWalkSquareThenWhenTri
 		          withTotalDistanceOf: (Parsec amount: 50)
 		          toBePlayedOnRolling: dice.
 
-	shipNames := #( 'Player 1' ).
+	shipNames := #( 'Player 1' 'Player 2' ).
 
 	aDeckOfCards := {
 		                Card reversePolarityWithoutOwner.
-		                Card reversePolarityWithoutOwner }
-		                asOrderedCollection.
+		                Card reversePolarityWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
 
 	aGame := Game
 		         gamePlayedBy: shipNames
@@ -2813,5 +2817,6 @@ GameTest >> testC56WhenAReversePolarityCardIsPlayedForAMoonWalkSquareThenWhenTri
 	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 2.
 	aGame play.
 
-	self assert: (aGame positionOf: 'Player 1') equals: 1
+	self assert: (aGame positionOf: 'Player 1') equals: 2.
+	self assert: (aGame positionOf: 'Player 2') equals: 5
 ]

@@ -32,17 +32,12 @@ BlackHoleSquare class >> withBackwardsPush: aNumberOfSquares [
 BlackHoleSquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: aShipManager [
 
 	isReversed
-		ifTrue: [
-			self
-				applyReversedEffectTo: shipList
-				forShip: aShip
-				on: aBoard
-				managedBy: aShipManager ]
+		ifTrue: [ self applyReversedEffectTo: shipList forShip: aShip ]
 		ifFalse: [ aShip moveBackwardsBy: backwardsPush ]
 ]
 
 { #category : 'as yet unclassified' }
-BlackHoleSquare >> applyReversedEffectTo: shipList forShip: aShip on: aBoard managedBy: aShipManager [
+BlackHoleSquare >> applyReversedEffectTo: shipList forShip: aShip [
 
 	shipList do: [ :ship |
 		ship = aShip ifFalse: [ ship moveBackwardsBy: backwardsPush ] ]

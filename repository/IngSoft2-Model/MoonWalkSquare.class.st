@@ -32,19 +32,14 @@ MoonWalkSquare class >> withBackwardsPush: aNumberOfSquares [
 MoonWalkSquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: aShipManager [
 
 	isReversed
-		ifTrue: [
-			self
-				applyReversedEffectTo: shipList
-				forShip: aShip
-				on: aBoard
-				managedBy: aShipManager ]
+		ifTrue: [ self applyReversedEffectforShip: aShip ]
 		ifFalse: [
 			shipList do: [ :ship |
 				ship = aShip ifFalse: [ ship moveBackwardsBy: backwardsPush ] ] ]
 ]
 
 { #category : 'as yet unclassified' }
-MoonWalkSquare >> applyReversedEffectTo: shipList forShip: aShip on: aBoard managedBy: aShipManager [
+MoonWalkSquare >> applyReversedEffectforShip: aShip [
 
 	aShip moveBackwardsBy: backwardsPush
 ]
