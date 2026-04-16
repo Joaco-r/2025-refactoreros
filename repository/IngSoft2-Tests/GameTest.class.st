@@ -2782,7 +2782,7 @@ GameTest >> testC55WhenAReversePolarityCardIsPlayedForABlackHoleSquareThenWhenTr
 ]
 
 { #category : 'tests' }
-GameTest >> testC56WhenAReversePolarityCardIsPlayedForAMoonWalkSquareThenWhenTriggeredTheShipGoesBackButOtherShipsStayInPosition [
+GameTest >> testC56WhenAReversePolarityCardIsPlayedForAHyperSpaceJumpSquareThenWhenTriggeredTheShipStaysInPositionButOtherShipsMoveForward [
 
 	| aGame dice aSetOfSquares shipNames aBoard aDeckOfCards |
 	dice := OrderedCollection new.
@@ -2818,5 +2818,86 @@ GameTest >> testC56WhenAReversePolarityCardIsPlayedForAMoonWalkSquareThenWhenTri
 	aGame play.
 
 	self assert: (aGame positionOf: 'Player 1') equals: 2.
+	self assert: (aGame positionOf: 'Player 2') equals: 5
+]
+
+{ #category : 'tests' }
+GameTest >> testC57WhenAReversePolarityCardIsPlayedForAHyperJumpSquareThenWhenTriggeredTheShipStaysInPositionButOtherShipsMoveForward [
+
+	| aGame dice aSetOfSquares shipNames aBoard aDeckOfCards |
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 1 )).
+	aSetOfSquares := {
+		                 EmptySquare new.
+		                 (HyperJumpSquare withRewards: { LightYear amount: 18 . LightYear amount: 12 . LightYear amount: 6 }).
+		                 EmptySquare new.
+		                 EmptySquare new.
+		                 EmptySquare new.
+		                 EmptySquare new.
+		                 EmptySquare new } asOrderedCollection.
+
+	aBoard := Board
+		          populatedOf: aSetOfSquares
+		          withTotalDistanceOf: (LightYear amount: 30)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' ).
+
+	aDeckOfCards := {
+		                Card reversePolarityWithoutOwner.
+		                Card reversePolarityWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 2.
+	aGame play.
+
+	self assert: (aGame positionOf: 'Player 1') equals: 2.
+	self assert: (aGame positionOf: 'Player 2') equals: 5
+]
+
+{ #category : 'tests' }
+GameTest >> testC58WhenAReversePolarityCardIsPlayedForAMoonWalkSquareThenWhenTriggeredTheShipGoesBackButOtherShipsStayInPosition [
+
+	| aGame dice aSetOfSquares shipNames aBoard aDeckOfCards |
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 1 4 1 )).
+	aSetOfSquares := {
+		                 EmptySquare new.
+		                 EmptySquare new.
+		                 (MoonWalkSquare withBackwardsPush: 4).
+		                 EmptySquare new.
+		                 EmptySquare new.
+		                 EmptySquare new.
+		                 EmptySquare new } asOrderedCollection.
+
+	aBoard := Board
+		          populatedOf: aSetOfSquares
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2').
+
+	aDeckOfCards := {
+		                Card reversePolarityWithoutOwner.
+		                Card reversePolarityWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 3.
+	aGame play.
+	aGame play.
+	aGame play.
+	self assert: (aGame positionOf: 'Player 1') equals: 1.
 	self assert: (aGame positionOf: 'Player 2') equals: 5
 ]
