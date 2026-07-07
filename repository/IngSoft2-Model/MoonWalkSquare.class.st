@@ -38,7 +38,7 @@ MoonWalkSquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: a
 				ship = aShip ifFalse: [ ship moveBackwardsBy: backwardsPush ] ] ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 MoonWalkSquare >> applyReversedEffectforShip: aShip [
 
 	aShip moveBackwardsBy: backwardsPush

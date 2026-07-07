@@ -27,8 +27,3 @@ AtomicBombSquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy:
 { #category : 'checking' }
 AtomicBombSquare >> checkIf: aShip shouldBattleOn: aBoard managedBy: aShipManager [
 ]
-
-{ #category : 'as yet unclassified' }
-AtomicBombSquare >> reverseSquareEffect [
-	isReversed := isReversed not.
-]

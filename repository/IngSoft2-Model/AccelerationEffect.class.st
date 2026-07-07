@@ -17,7 +17,7 @@ AccelerationEffect class >> ofValue: anAccelerationValue [
 	^ self new initializeWith: anAccelerationValue 
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 AccelerationEffect >> applyReversedThrowEffectFor: aShip [
 
 	^ -1
@@ -28,7 +28,7 @@ AccelerationEffect >> applyThrowEffectFor: aShip [
 	^ 1
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 AccelerationEffect >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: anotherShip [
 
 	aShip ~= anotherShip ifTrue: [
@@ -47,13 +47,13 @@ AccelerationEffect >> isCalled: anEffectName [
 	^ 'Acceleration Card' = anEffectName
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 AccelerationEffect >> targetTo: aTargetShip [ 
 	
 	Error signal: 'Acceleration Card does not require a target ship.'
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 AccelerationEffect >> targetTo: aTargetShip whoPlayed: aTargetCardName [
 	
 	Error signal: 'Acceleration Card does not require a target card.'

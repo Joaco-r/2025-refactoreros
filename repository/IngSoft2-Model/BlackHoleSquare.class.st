@@ -36,7 +36,7 @@ BlackHoleSquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: 
 		ifFalse: [ aShip moveBackwardsBy: backwardsPush ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 BlackHoleSquare >> applyReversedEffectTo: shipList forShip: aShip [
 
 	shipList do: [ :ship |

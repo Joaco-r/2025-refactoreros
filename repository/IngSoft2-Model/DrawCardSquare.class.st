@@ -41,7 +41,7 @@ DrawCardSquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: a
 		ifFalse: [ aShip drawCard: deck atRandom deepCopy ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 DrawCardSquare >> applyReversedEffectTo: shipList forShip: aShip [
 
 	shipList do: [ :ship |

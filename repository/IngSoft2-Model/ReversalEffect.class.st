@@ -20,19 +20,19 @@ ReversalEffect >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
 	aGame applyReversalTo: targetShip whoPlayed: targetCardName
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 ReversalEffect >> checkIfTargetCardNeeded [
 
 	Error signal: 'Reversal Card requiers a target card.'
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 ReversalEffect >> checkIfTargetShipNeeded [
 
 	Error signal: 'Reversal Card requiers a target ship.'
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 ReversalEffect >> intializeTargetedTo: aTargetShip whoPlayed: aTargetCardName [
 
 	targetShip := aTargetShip.
@@ -45,7 +45,7 @@ ReversalEffect >> isCalled: anEffectName [
 	^ 'Reversal Card' = anEffectName
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 ReversalEffect >> targetTo: aTargetShip whoPlayed: aTargetCardName [
 
 	^ self class targetTo: aTargetShip whoPlayed: aTargetCardName

@@ -48,7 +48,7 @@ HyperJumpSquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: 
 	currentRewardIndex > rewards size ifTrue: [ currentRewardIndex := 1 ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 HyperJumpSquare >> applyReversedEffectTo: shipList forShip: aShip with: aDistanceInSquares [
 
 	shipList do: [ :ship |

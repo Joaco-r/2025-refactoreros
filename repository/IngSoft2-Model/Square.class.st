@@ -33,7 +33,7 @@ Square >> initializeWithDefaultPolarity [
 	isReversed := false.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 Square >> reverseSquareEffect [
 
 	isReversed := isReversed not

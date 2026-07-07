@@ -108,7 +108,7 @@ Card >> applyThrowEffectFor: aShip [
 	^ effect applyThrowEffectFor: aShip
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 Card >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: anotherShip [
 
 	effect
@@ -116,17 +116,17 @@ Card >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: anotherSh
 		playsACardDuringTheTurnOf: anotherShip
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 Card >> checkIfTargetCardNeeded [
 	effect checkIfTargetCardNeeded.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 Card >> checkIfTargetShipNeeded [
 	effect checkIfTargetShipNeeded.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 Card >> findCardToBeReplayed: activeCards [
 
 	^ effect findCardToBeReplayed: activeCards
@@ -157,7 +157,7 @@ Card >> is: aCardName ownedBy: aShip [
 	^ aShip = owner and: (effect isCalled: aCardName)
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 Card >> playedBy: aShip [
 
 	^ self class
@@ -165,7 +165,7 @@ Card >> playedBy: aShip [
 		  causing: (effect)
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 Card >> playedBy: aShip targetedTo: aTargetShip [
 
 	^ self class
@@ -173,7 +173,7 @@ Card >> playedBy: aShip targetedTo: aTargetShip [
 		  causing: (effect targetTo: aTargetShip)
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 Card >> playedBy: aShip targetedTo: aTargetShip whoPlayed: aTargetCardName [
 
 	^ self class
@@ -181,7 +181,7 @@ Card >> playedBy: aShip targetedTo: aTargetShip whoPlayed: aTargetCardName [
 		  causing: (effect targetTo: aTargetShip whoPlayed: aTargetCardName)
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 Card >> reverseEffect [
 
 	isReversed := isReversed not.

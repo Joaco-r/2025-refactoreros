@@ -54,7 +54,7 @@ WormHoleSquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: a
 		ifTrue: [ self applyReversedEffectTo: shipList forShip: aShip using: currentPosition]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 WormHoleSquare >> applyReversedEffectTo: shipList forShip: aShip using: currentPosition [
 
 	| shipsOwnPosition |

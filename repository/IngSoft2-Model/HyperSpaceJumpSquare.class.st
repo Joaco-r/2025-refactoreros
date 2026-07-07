@@ -28,7 +28,7 @@ HyperSpaceJumpSquare >> applyEffectTo: shipList forShip: aShip on: aBoard manage
 			aShip breakAShield ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 HyperSpaceJumpSquare >> applyReversedEffectTo: shipList forShip: aShip [
 
 	shipList do: [ :ship |

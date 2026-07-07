@@ -14,7 +14,7 @@ CardEffect >> applyMercenaryEffectFor: aShip in: aListMercenaries from: cardOwne
 CardEffect >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 CardEffect >> applyReversedThrowEffectFor: aShip [
 
 	^ 0
@@ -26,19 +26,19 @@ CardEffect >> applyThrowEffectFor: aShip [
 	
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 CardEffect >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: anotherShip [
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 CardEffect >> checkIfTargetCardNeeded [
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 CardEffect >> checkIfTargetShipNeeded [
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 CardEffect >> findCardToBeReplayed: activeCards [
 	^ (activeCards at: 1 )
 ]

@@ -23,7 +23,7 @@ RepeatEffect >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
 	aGame applyRepeatTo: aTargetShip
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 RepeatEffect >> checkIfTargetShipNeeded [
 
 	Error signal: 'Repeat Card requires a target ship.'
@@ -41,12 +41,12 @@ RepeatEffect >> isCalled: anEffectName [
 	^ 'Repeat Card' = anEffectName
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 RepeatEffect >> targetTo: aTargetShip [
 	^ self class targetedTo: aTargetShip
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 RepeatEffect >> targetTo: aTargetShip whoPlayed: aTargetCardName [
 	Error signal: 'Repeat Card does not require a target card.'
 ]
