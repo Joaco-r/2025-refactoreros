@@ -1,3 +1,6 @@
+"
+An effect that can be added to a card so that it can be applied in game when said card is played.
+"
 Class {
 	#name : 'CardEffect',
 	#superclass : 'Object',

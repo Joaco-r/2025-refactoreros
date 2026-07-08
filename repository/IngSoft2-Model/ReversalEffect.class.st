@@ -1,3 +1,6 @@
+"
+When used in a card, can be played to inverse the permanent effect of a previously played card.
+"
 Class {
 	#name : 'ReversalEffect',
 	#superclass : 'CardEffect',
