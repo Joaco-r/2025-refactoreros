@@ -20,13 +20,22 @@ SpeedEffect class >> ofValue: aSpeedValue targetedTo: aTarget [
 ]
 
 { #category : 'actions' }
-SpeedEffect >> applyThrowEffectFor: aShip [
+SpeedEffect >> applyReversedThrowEffectFor: aShip [
 
-	aShip = targetShip ifTrue: [ ^ 1 ].
+	aShip = targetShip ifTrue: [ ^ -1 ].
+
 	^ 0
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
+SpeedEffect >> applyThrowEffectFor: aShip [
+
+	aShip = targetShip ifTrue: [ ^ 1 ].
+
+	^ 0
+]
+
+{ #category : 'testing' }
 SpeedEffect >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: anotherShip [
 
 	aShip ~= anotherShip ifTrue: [
@@ -34,7 +43,7 @@ SpeedEffect >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: an
 			'The ship is trying to use a permanent card out of its turn' ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 SpeedEffect >> checkIfTargetShipNeeded [
 
 	Error signal: 'Speed Card requiers a target ship.'
@@ -42,8 +51,10 @@ SpeedEffect >> checkIfTargetShipNeeded [
 
 { #category : 'initialization' }
 SpeedEffect >> initializeWithSpeedValue: aSpeedValue and: aTargetShip [
+
 	speedValue := aSpeedValue.
-	targetShip := aTargetShip
+	targetShip := aTargetShip.
+
 ]
 
 { #category : 'accessing' }
@@ -52,13 +63,13 @@ SpeedEffect >> isCalled: aName [
 	^ 'Speed Card' = aName
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 SpeedEffect >> targetTo: aTargetShip [
 
 	^ self class ofValue: speedValue targetedTo: aTargetShip
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 SpeedEffect >> targetTo: aTargetShip whoPlayed: aTargetCardName [
 
 	Error signal:'Speed Card does not require a target card.'

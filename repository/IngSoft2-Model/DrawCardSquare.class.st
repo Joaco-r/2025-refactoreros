@@ -3,7 +3,7 @@ A square that gives a new random card to a ship
 "
 Class {
 	#name : 'DrawCardSquare',
-	#superclass : 'EmptySquare',
+	#superclass : 'Square',
 	#instVars : [
 		'deck'
 	],
@@ -36,11 +36,21 @@ DrawCardSquare class >> withDefaultDeck [
 { #category : 'actions' }
 DrawCardSquare >> applyEffectTo: shipList forShip: aShip on: aBoard managedBy: aShipManager [
 
-	aShip drawCard: deck atRandom deepCopy
+	isReversed
+		ifTrue: [ self applyReversedEffectTo: shipList forShip: aShip ]
+		ifFalse: [ aShip drawCard: deck atRandom deepCopy ]
+]
+
+{ #category : 'actions' }
+DrawCardSquare >> applyReversedEffectTo: shipList forShip: aShip [
+
+	shipList do: [ :ship |
+		ship = aShip ifFalse: [ ship drawCard: deck atRandom deepCopy ] ]
 ]
 
 { #category : 'initialization' }
 DrawCardSquare >> intializeWith: aDeckOfCards [
 	
 	deck := aDeckOfCards.
+	isReversed := false.
 ]

@@ -117,7 +117,7 @@ Game >> applyCancellationTo: aTargetShip whoPlayed: aTargetCardName [
 	activeCards remove: cardToBeCancelled
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 Game >> applyRedoFrom: aShip [
 
 	| newCard cardToBeReplayed |
@@ -137,7 +137,7 @@ Game >> applyRedoFrom: aShip [
 	activeCards addFirst: newCard
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 Game >> applyRedoTo: aTargetShip from: aShip [
 
 	| newCard cardToBeReplayed |
@@ -189,6 +189,27 @@ Game >> applyRepeatTo: aTarget [
 	shipManager landShip: targetedShip atSquare: nextSquare on: board
 ]
 
+{ #category : 'actions' }
+Game >> applyReversalTo: aTargetShip whoPlayed: aTargetCardName [
+
+	| cardToBeReversed |
+	(activeCards anySatisfy: [ :aCard |
+		 aCard is: aTargetCardName ownedBy: aTargetShip ]) ifFalse: [
+		Error signal: 'Targeted Card is not within active permanent cards' ].
+
+	cardToBeReversed := activeCards detect: [ :aCard |
+		                     aCard is: aTargetCardName ownedBy: aTargetShip ].
+	cardToBeReversed reverseEffect.
+]
+
+{ #category : 'actions' }
+Game >> applyReversePolarityFor: aSquareNumber [
+	| squareToBeReversed |
+	
+	squareToBeReversed := board squareAt: aSquareNumber.
+	squareToBeReversed reverseSquareEffect.
+]
+
 { #category : 'accessing' }
 Game >> cardsInHandOf: aShipName [
 
@@ -205,7 +226,7 @@ Game >> checkForActiveGame [
 	^ true
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 Game >> checkIf: aShip canHireAsMercenary: anotherShip [
 	(activeCards anySatisfy: [ :aCard | aCard hasHiredAsAMercenary: anotherShip ]) ifTrue: [ Error signal: 'Ship has already been hired as mercenary' ].
 
@@ -226,7 +247,7 @@ Game >> initializeWith: aSetOfships on: aBoard toPlayFor: aNumberOfLaps [
 	activeCards := OrderedCollection new.
 	shipManager := ShipManager withShips: ships andActiveCards: activeCards.
 	board := aBoard.	
-	nextSquare := EmptySquare new.
+	nextSquare := Square empty.
 
 ]
 
@@ -323,6 +344,20 @@ Game >> throw: aCardName from: aShipName [
 	card := queriedShip throw: aCardName whenTurnOf: (ships at: 1).
 	
 	card applyOnPlayed: self to: ''.
+	activeCards addFirst: card.
+]
+
+{ #category : 'actions' }
+Game >> throw: aCardName from: aShipName pointingTo: aSquareNumber [
+
+	| queriedShip card |
+	queriedShip := self searchShipByName: aShipName.
+
+	
+	card := queriedShip throw: aCardName whenTurnOf: (ships at: 1).
+	
+	
+	card applyOnPlayed: self to: aSquareNumber.
 	activeCards addFirst: card.
 ]
 

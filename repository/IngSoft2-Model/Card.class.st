@@ -6,7 +6,8 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'owner',
-		'effect'
+		'effect',
+		'isReversed'
 	],
 	#category : 'IngSoft2-Model-Card',
 	#package : 'IngSoft2-Model',
@@ -57,12 +58,36 @@ Card class >> repeatWithoutOwner [
 		  causing: (RepeatEffect targetedTo: nil)
 ]
 
+{ #category : 'as yet unclassified' }
+Card class >> reversalWithoutOwner [
+
+	^ self new
+		  initializeOwnedBy: nil
+		  causing: (ReversalEffect targetTo: nil whoPlayed: nil)
+]
+
+{ #category : 'as yet unclassified' }
+Card class >> reversePolarityWithoutOwner [
+
+	^ self new
+		  initializeOwnedBy: nil
+		  causing: (ReversePolarityEffect new)
+]
+
 { #category : 'instance creation' }
 Card class >> speedWithoutOwner [
 
 	^ self new
 		  initializeOwnedBy: nil
 		  causing: (SpeedEffect ofValue: 1 targetedTo: nil)
+]
+
+{ #category : 'actions' }
+Card >> applyMercenaryEffectFor: aShip battling: antherShip in: shipWithMercenaries [
+
+	isReversed ifTrue: [  
+		^ effect applyReversedMercenaryEffectFor: aShip battling: antherShip in: shipWithMercenaries from: owner].
+	^ effect applyMercenaryEffectFor: aShip in: shipWithMercenaries from: owner
 ]
 
 { #category : 'actions' }
@@ -79,10 +104,11 @@ Card >> applyOnPlayed: aGame to: aTargetShip [
 { #category : 'actions' }
 Card >> applyThrowEffectFor: aShip [
 
-	^ (effect applyThrowEffectFor: aShip)
+	isReversed ifTrue: [ ^ effect applyReversedThrowEffectFor: aShip ].
+	^ effect applyThrowEffectFor: aShip
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 Card >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: anotherShip [
 
 	effect
@@ -90,17 +116,17 @@ Card >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: anotherSh
 		playsACardDuringTheTurnOf: anotherShip
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 Card >> checkIfTargetCardNeeded [
 	effect checkIfTargetCardNeeded.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 Card >> checkIfTargetShipNeeded [
 	effect checkIfTargetShipNeeded.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 Card >> findCardToBeReplayed: activeCards [
 
 	^ effect findCardToBeReplayed: activeCards
@@ -122,7 +148,7 @@ Card >> initializeOwnedBy: aShip causing: anEffect [
 
 	owner := aShip.
 	effect := anEffect.
-	
+	isReversed := false
 ]
 
 { #category : 'testing' }
@@ -131,7 +157,7 @@ Card >> is: aCardName ownedBy: aShip [
 	^ aShip = owner and: (effect isCalled: aCardName)
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 Card >> playedBy: aShip [
 
 	^ self class
@@ -139,7 +165,7 @@ Card >> playedBy: aShip [
 		  causing: (effect)
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 Card >> playedBy: aShip targetedTo: aTargetShip [
 
 	^ self class
@@ -147,10 +173,16 @@ Card >> playedBy: aShip targetedTo: aTargetShip [
 		  causing: (effect targetTo: aTargetShip)
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 Card >> playedBy: aShip targetedTo: aTargetShip whoPlayed: aTargetCardName [
 
 	^ self class
 		  ownedBy: aShip
 		  causing: (effect targetTo: aTargetShip whoPlayed: aTargetCardName)
+]
+
+{ #category : 'actions' }
+Card >> reverseEffect [
+
+	isReversed := isReversed not.
 ]

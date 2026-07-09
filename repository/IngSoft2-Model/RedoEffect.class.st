@@ -17,7 +17,7 @@ RedoEffect >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
 	aGame applyRedoFrom: owner
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 RedoEffect >> findCardToBeReplayed: activeCards [
 	^ (activeCards at: 2 )
 ]
@@ -28,13 +28,13 @@ RedoEffect >> isCalled: anEffectName [
 	^ 'Redo Card' = anEffectName
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 RedoEffect >> targetTo: aTargetShip [
 	
 	^ RedoWithTargetShip targetedTo: aTargetShip
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 RedoEffect >> targetTo: aTargetShip whoPlayed: aTargetCardName [
 
 	^ RedoWithTargetCard targetTo: aTargetShip whoPlayed: aTargetCardName

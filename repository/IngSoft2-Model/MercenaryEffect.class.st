@@ -29,7 +29,14 @@ MercenaryEffect >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
 	aGame checkIf: owner canHireAsMercenary: aTargetShip
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
+MercenaryEffect >> applyReversedMercenaryEffectFor: aShip battling: antherShip in: aListMercenaries from: cardOwner [
+
+
+	antherShip = cardOwner ifTrue: [ aListMercenaries add: targetShip ]
+]
+
+{ #category : 'testing' }
 MercenaryEffect >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: anotherShip [
 
 	aShip ~= anotherShip ifTrue: [
@@ -37,7 +44,7 @@ MercenaryEffect >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf
 			'The ship is trying to use a permanent card out of its turn' ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 MercenaryEffect >> checkIfTargetShipNeeded [
 
 	Error signal: 'Mercenary Card requiers a target ship.'
@@ -61,12 +68,12 @@ MercenaryEffect >> isCalled: anEffectName [
 	^ 'Mercenary Card' = anEffectName
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 MercenaryEffect >> targetTo: aShip [
 	^ self class targetedTo: aShip 
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 MercenaryEffect >> targetTo: aShip whoPlayed: aTargetCardName [
 	Error signal: 'Mercenary Card does not require a target card.'
 ]

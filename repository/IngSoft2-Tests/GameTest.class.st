@@ -327,11 +327,11 @@ GameTest >> testB06WhenAShipLandsOnAtomicBombThenAllShipsGoBackToFirstSquare [
 	dice := OrderedCollection new.
 	dice add: (LoadedDie withSetNumbers: #( 2 4 3 )).
 	aSetOfSquares := {
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 AtomicBombSquare new.
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 AtomicBombSquare withDefaultPolarity.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -356,12 +356,12 @@ GameTest >> testB07WhenAShipLandsOnAtomicBombThenAllShipsLoseAShield [
 	dice := OrderedCollection new.
 	dice add: (LoadedDie withSetNumbers: #( 2 4 3 )).
 	aSetOfSquares := {
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 AtomicBombSquare new.
-		                 EmptySquare new.
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 AtomicBombSquare withDefaultPolarity.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -386,13 +386,13 @@ GameTest >> testB08WhenAShipLandsOnBlackHoleThenItGoesBack4Squares [
 	dice := OrderedCollection new.
 	dice add: (LoadedDie withSetNumbers: #( 5 )).
 	aSetOfSquares := {
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 BlackHoleSquare new.
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 BlackHoleSquare withBackwardsPush: 4.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -415,13 +415,13 @@ GameTest >> testB09WhenAShipLandsOnHyperSpaceJumpThenItAdvances4Squares [
 	dice := OrderedCollection new.
 	dice add: (LoadedDie withSetNumbers: #( 1 )).
 	aSetOfSquares := {
-		                 EmptySquare new.
-		                 HyperSpaceJumpSquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty.
+		                 HyperSpaceJumpSquare withForwardPush: 4.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -444,13 +444,13 @@ GameTest >> testB10WhenAShipLandsOnHyperSpaceJumpThenItLosesAShield [
 	dice := OrderedCollection new.
 	dice add: (LoadedDie withSetNumbers: #( 1 )).
 	aSetOfSquares := {
-		                 EmptySquare new.
-		                 HyperSpaceJumpSquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty.
+		                 HyperSpaceJumpSquare withForwardPush: 4.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -473,13 +473,13 @@ GameTest >> testB11WhenAShipLandsOnMoonWalkThenTheShipStaysInPositionButOtherShi
 	dice := OrderedCollection new.
 	dice add: (LoadedDie withSetNumbers: #( 2 4 3 )).
 	aSetOfSquares := {
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
 		                 (MoonWalkSquare withBackwardsPush: 2).
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -507,12 +507,12 @@ GameTest >> testB12WhenAShipLandsOnWormHoleEntranceThenItMovesToTheExit [
 	dice := OrderedCollection new.
 	dice add: (LoadedDie withSetNumbers: #( 1 )).
 	aSetOfSquares := {
-		                 EmptySquare new.
+		                 Square empty.
 		                 (WormHoleSquare withEntranceAt: 2 andExitAt: 5).
-		                 EmptySquare new.
-		                 EmptySquare new.
+		                 Square empty.
+		                 Square empty.
 		                 (WormHoleSquare withEntranceAt: 2 andExitAt: 5).
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -535,12 +535,12 @@ GameTest >> testB13WhenAShipLandsOnWormHoleExitThenItMovesToTheEntrance [
 	dice := OrderedCollection new.
 	dice add: (LoadedDie withSetNumbers: #( 4 )).
 	aSetOfSquares := {
-		                 EmptySquare new.
+		                 Square empty.
 		                 (WormHoleSquare withEntranceAt: 2 andExitAt: 5).
-		                 EmptySquare new.
-		                 EmptySquare new.
+		                 Square empty.
+		                 Square empty.
 		                 (WormHoleSquare withEntranceAt: 2 andExitAt: 5).
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -563,9 +563,9 @@ GameTest >> testB14WhenAShipLandsOnASquareWithAnotherShipThenTheyBattleAndOnlyLo
 	dice := OrderedCollection new.
 	dice add: (LoadedDie withSetNumbers: #( 2 2 20 8 )).
 	aSetOfSquares := {
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -590,9 +590,9 @@ GameTest >> testB15WhenAShipLandsOnASquareWithAnotherShipAndTheyBattleThenTheLos
 	dice := OrderedCollection new.
 	dice add: (LoadedDie withSetNumbers: #( 2 2 20 8 )).
 	aSetOfSquares := {
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -618,9 +618,9 @@ GameTest >> testB16WhenAShipThatJustLostOneShieldDecidesToSkipItsTurnThenItsShie
 	dice add:
 		(LoadedDie withSetNumbers: #( 2 2 20 18 )).
 	aSetOfSquares := {
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -645,12 +645,12 @@ GameTest >> testB17WhenAShipLandsOnHyperJumpThenItAdvancesAccordingToParsecsRewa
 	dice := OrderedCollection new.
 	dice add: (LoadedDie withSetNumbers: #( 1 1 1 )).
 	aSetOfSquares := {
-		                 EmptySquare new.
+		                 Square empty.
 		                 (HyperJumpSquare withRewards: { LightYear amount: 18 . LightYear amount: 12 . LightYear amount: 6 }).
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -678,12 +678,12 @@ GameTest >> testB18WhenAShipLandsOnExhaustedHyperJumpThenItAdvancesAccordingToRe
 	dice add: (LoadedDie withSetNumbers: #( 1 1 1 1 3 )).
 	
 	aSetOfSquares := {
-		                 EmptySquare new.
+		                 Square empty.
 		                 (HyperJumpSquare withRewards: { LightYear amount: 22 . LightYear amount: 18 . LightYear amount: 12 }).
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -729,10 +729,10 @@ GameTest >> testC02WhenShipLandsOnDrawCardSquareThenItObtainsANewCard [
 	dice := OrderedCollection new.
 	dice add: (LoadedDie withSetNumbers: #( 2 )).
 	aSetOfSquares := {
-		                 EmptySquare new.
-		                 EmptySquare new.
+		                 Square empty.
+		                 Square empty.
 		                 DrawCardSquare withDefaultDeck.
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -1264,16 +1264,16 @@ GameTest >> testC16WhenAShipPlaysRepeatCardTargetedToItselfThenTheEffectOfTheLas
 	dice := OrderedCollection new.
 	dice add: (LoadedDie withSetNumbers: #( 1 9 1 )).
 	aSetOfSquares := {
-		                 EmptySquare new.
-		                 EmptySquare new.
+		                 Square empty.
+		                 Square empty.
 		                 (MoonWalkSquare withBackwardsPush: 4).
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -1310,16 +1310,16 @@ GameTest >> testC17WhenAShipPlaysRepeatCardTargetedToOtherShipThenTheEffectOfThe
 	dice := OrderedCollection new.
 	dice add: (LoadedDie withSetNumbers: #( 1 5 1 )).
 	aSetOfSquares := {
-		                 EmptySquare new.
-		                 EmptySquare new.
+		                 Square empty.
+		                 Square empty.
 		                 (MoonWalkSquare withBackwardsPush: 1).
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -1359,9 +1359,9 @@ GameTest >> testC18WhenAShipPlaysRepeatCardOnAnEmptySquareThenTheCardHasNoEffect
 	dice := OrderedCollection new.
 	dice add: (LoadedDie withSetNumbers: #( 1 )).
 	aSetOfSquares := {
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -1396,9 +1396,9 @@ GameTest >> testC19WhenARepeatCardIsPlayedBeforeAnyDiceAreRolledThenTheCardHasNo
 	dice := OrderedCollection new.
 	dice add: (LoadedDie withSetNumbers: #(  )).
 	aSetOfSquares := {
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -1731,12 +1731,12 @@ GameTest >> testC27WhenAShipLandsOnHyperJumpThenAdvancesAccordingToLightYearRewa
 	dice add: (LoadedDie withSetNumbers: #( 1 1 1 )).
 
 	aSetOfSquares := {
-		                 EmptySquare new.
+		                 Square empty.
 		                 (HyperJumpSquare withRewards: { LightYear amount: 18 . LightYear amount: 12 . LightYear amount: 6 }).
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -1803,16 +1803,16 @@ GameTest >> testC29WhenARedoCardIsPlayedAfterARepeatCardThenTheLastSquareGetsRet
 	dice := OrderedCollection new.
 	dice add: (LoadedDie withSetNumbers: #( 1 9 1 )).
 	aSetOfSquares := {
-		                 EmptySquare new.
-		                 EmptySquare new.
+		                 Square empty.
+		                 Square empty.
 		                 (MoonWalkSquare withBackwardsPush: 2).
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new.
-		                 EmptySquare new } asOrderedCollection.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
 
 	aBoard := Board
 		          populatedOf: aSetOfSquares
@@ -2440,4 +2440,660 @@ GameTest >> testC46WhenARedoCardIsPlayedWithATargetCardAfterASpeedCardThenItFail
 		should: [ aGame throw: 'Redo Card' from: 'Player 2' to: 'Player 1' whoPlayed: 'Acceleration Card']
 		raise: Error
 		withMessageText: 'Speed Card does not require a target card.'
+]
+
+{ #category : 'tests' }
+GameTest >> testC47WhenAReversalCardIsPlayedOnASpeedCardThenTheOwnerOfTheSpeedCardReceivesTheReversedSpeedEffect [
+
+	| aGame dice squareGenerator shipNames aBoard aBoardSize aDeckOfCards |
+	aBoardSize := 10.
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 3 5 7 )).
+	squareGenerator := SquareGenerator withOnlyEmptySquares.
+	aBoard := Board
+		          populatedBy: squareGenerator
+		          anAmountOf: aBoardSize
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+
+	aGame throw: 'Speed Card' from: 'Player 1' to: 'Player 1'.
+	aGame throw: 'Reversal Card' from: 'Player 2'  to: 'Player 1' whoPlayed: 'Speed Card'.
+	aGame play.
+
+
+	self assert: (aGame positionOf: 'Player 1') equals: 3.
+]
+
+{ #category : 'tests' }
+GameTest >> testC48WhenAReversalCardIsPlayedOnAAccelerationCardThenAllPlayersReceiveTheReversedAccelerationEffect [
+
+	| aGame dice squareGenerator shipNames aBoard aBoardSize aDeckOfCards |
+	aBoardSize := 10.
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 3 5 7 )).
+	squareGenerator := SquareGenerator withOnlyEmptySquares.
+	aBoard := Board
+		          populatedBy: squareGenerator
+		          anAmountOf: aBoardSize
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card accelerationWithoutOwner .
+		                Card accelerationWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+
+	aGame throw: 'Acceleration Card' from: 'Player 1'.
+	aGame throw: 'Reversal Card' from: 'Player 2'  to: 'Player 1' whoPlayed: 'Acceleration Card'.
+	aGame play.
+	aGame play.
+	aGame play.
+
+	self assert: (aGame positionOf: 'Player 1') equals: 3.
+	self assert: (aGame positionOf: 'Player 2') equals: 5.
+	self assert: (aGame positionOf: 'Player 3') equals: 7.
+]
+
+{ #category : 'tests' }
+GameTest >> testC49WhenAReversalCardIsPlayedForAMercenaryCardThenTheMercenaryHelpsTheOpponentInBatlle [
+
+	| aGame dice squareGenerator shipNames aBoard aBoardSize aDeckOfCards |
+	aBoardSize := 10.
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 2 3 10 1 3 3 5 )).
+	squareGenerator := SquareGenerator withOnlyEmptySquares.
+	aBoard := Board
+		          populatedBy: squareGenerator
+		          anAmountOf: aBoardSize
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card mercenaryWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card reversalWithoutOwner .
+		                Card reversalWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner }
+		                asOrderedCollection.
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+
+	aGame
+		throw: 'Mercenary Card'
+		from: 'Player 1'
+		to: 'Player 3'.
+	aGame throw: 'Reversal Card' from: 'Player 2'  to: 'Player 1'  whoPlayed: 'Mercenary Card'.
+	aGame play.
+	aGame play.
+	aGame play.
+	aGame play.
+
+	self assert: (aGame positionOf: 'Player 1') equals: 1.
+	self assert: (aGame positionOf: 'Player 2') equals: 4
+]
+
+{ #category : 'tests' }
+GameTest >> testC50WhenAReversalCardIsPlayedWithoutATargetShipThenItFails [
+
+	| aGame dice squareGenerator shipNames aBoard aBoardSize aDeckOfCards |
+	aBoardSize := 10.
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 3 5 7 )).
+	squareGenerator := SquareGenerator withOnlyEmptySquares.
+	aBoard := Board
+		          populatedBy: squareGenerator
+		          anAmountOf: aBoardSize
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+
+	aGame throw: 'Speed Card' from: 'Player 1' to: 'Player 1'.
+
+	self
+		should: [ aGame throw: 'Reversal Card' from: 'Player 2' ]
+		raise: Error
+		withMessageText: 'Reversal Card requiers a target ship.'
+]
+
+{ #category : 'tests' }
+GameTest >> testC51WhenAReversalCardIsPlayedWithoutACardShipThenItFails [
+
+	| aGame dice squareGenerator shipNames aBoard aBoardSize aDeckOfCards |
+	aBoardSize := 10.
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 3 5 7 )).
+	squareGenerator := SquareGenerator withOnlyEmptySquares.
+	aBoard := Board
+		          populatedBy: squareGenerator
+		          anAmountOf: aBoardSize
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+
+	aGame throw: 'Speed Card' from: 'Player 1' to: 'Player 1'.
+
+	self
+		should: [ aGame throw: 'Reversal Card' from: 'Player 2' to: 'Player 1']
+		raise: Error
+		withMessageText: 'Reversal Card requiers a target card.'
+]
+
+{ #category : 'tests' }
+GameTest >> testC52WhenAReversalCardIsPlayedTargetingACardThatHasNotBeenPlayedThenItFails [
+
+	| aGame dice squareGenerator shipNames aBoard aBoardSize aDeckOfCards |
+	aBoardSize := 10.
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 3 5 7 )).
+	squareGenerator := SquareGenerator withOnlyEmptySquares.
+	aBoard := Board
+		          populatedBy: squareGenerator
+		          anAmountOf: aBoardSize
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+
+	aGame throw: 'Speed Card' from: 'Player 1' to: 'Player 1'.
+
+	self
+		should: [ aGame throw: 'Reversal Card' from: 'Player 2' to: 'Player 1' whoPlayed: 'Acceleration Card']
+		raise: Error
+		withMessageText: 'Targeted Card is not within active permanent cards'
+]
+
+{ #category : 'tests' }
+GameTest >> testC53WhenAReversalCardIsTargetedToANonPermanentCardThenItFails [
+
+	| aGame dice squareGenerator shipNames aBoard aBoardSize aDeckOfCards |
+	aBoardSize := 10.
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 3 5 7 )).
+	squareGenerator := SquareGenerator withOnlyEmptySquares.
+	aBoard := Board
+		          populatedBy: squareGenerator
+		          anAmountOf: aBoardSize
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card repeatWithoutOwner .
+		                Card repeatWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card reversalWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+	aGame play.
+	aGame throw: 'Repeat Card' from: 'Player 1' to: 'Player 1'.
+
+	self
+		should: [ aGame throw: 'Reversal Card' from: 'Player 2' to: 'Player 1' whoPlayed: 'Redo Card']
+		raise: Error
+		withMessageText: 'Targeted Card is not within active permanent cards'
+]
+
+{ #category : 'tests' }
+GameTest >> testC54WhenAReversePolarityCardIsPlayedForAnAtomicBombSquareThenTheSquareAffectsNoPlayerWhenTriggered [
+
+	| aGame dice aSetOfSquares shipNames aBoard aDeckOfCards |
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 1 )).
+	aSetOfSquares := {
+		                 Square empty.
+		                 AtomicBombSquare withDefaultPolarity.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
+
+	aBoard := Board
+		          populatedOf: aSetOfSquares
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' ).
+
+	aDeckOfCards := {
+		                Card reversePolarityWithoutOwner.
+		                Card reversePolarityWithoutOwner }
+		                asOrderedCollection.
+
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 2.
+	aGame play.
+
+	self assert: (aGame positionOf: 'Player 1') equals: 2
+]
+
+{ #category : 'tests' }
+GameTest >> testC55WhenAReversePolarityCardIsPlayedForABlackHoleSquareThenWhenTriggeredTheShipStaysInPositionButOtherShipsGoBack [
+
+	| aGame dice aSetOfSquares shipNames aBoard aDeckOfCards |
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 1 )).
+	aSetOfSquares := {
+		                 Square empty.
+		                 (BlackHoleSquare withBackwardsPush: 4).
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
+
+	aBoard := Board
+		          populatedOf: aSetOfSquares
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' ).
+
+	aDeckOfCards := {
+		                Card reversePolarityWithoutOwner.
+		                Card reversePolarityWithoutOwner }
+		                asOrderedCollection.
+
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 2.
+	aGame play.
+
+	self assert: (aGame positionOf: 'Player 1') equals: 2
+]
+
+{ #category : 'tests' }
+GameTest >> testC56WhenAReversePolarityCardIsPlayedForAHyperSpaceJumpSquareThenWhenTriggeredTheShipStaysInPositionButOtherShipsMoveForward [
+
+	| aGame dice aSetOfSquares shipNames aBoard aDeckOfCards |
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 1 )).
+	aSetOfSquares := {
+		                 Square empty.
+		                 HyperSpaceJumpSquare withForwardPush: 4.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
+
+	aBoard := Board
+		          populatedOf: aSetOfSquares
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' ).
+
+	aDeckOfCards := {
+		                Card reversePolarityWithoutOwner.
+		                Card reversePolarityWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 2.
+	aGame play.
+
+	self assert: (aGame positionOf: 'Player 1') equals: 2.
+	self assert: (aGame positionOf: 'Player 2') equals: 5
+]
+
+{ #category : 'tests' }
+GameTest >> testC57WhenAReversePolarityCardIsPlayedForAHyperJumpSquareThenWhenTriggeredTheShipStaysInPositionButOtherShipsMoveForward [
+
+	| aGame dice aSetOfSquares shipNames aBoard aDeckOfCards |
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 1 )).
+	aSetOfSquares := {
+		                 Square empty.
+		                 (HyperJumpSquare withRewards: { LightYear amount: 18 . LightYear amount: 12 . LightYear amount: 6 }).
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
+
+	aBoard := Board
+		          populatedOf: aSetOfSquares
+		          withTotalDistanceOf: (LightYear amount: 30)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' ).
+
+	aDeckOfCards := {
+		                Card reversePolarityWithoutOwner.
+		                Card reversePolarityWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 2.
+	aGame play.
+
+	self assert: (aGame positionOf: 'Player 1') equals: 2.
+	self assert: (aGame positionOf: 'Player 2') equals: 5
+]
+
+{ #category : 'tests' }
+GameTest >> testC58WhenAReversePolarityCardIsPlayedForAMoonWalkSquareThenWhenTriggeredTheShipGoesBackButOtherShipsStayInPosition [
+
+	| aGame dice aSetOfSquares shipNames aBoard aDeckOfCards |
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 1 4 1 )).
+	aSetOfSquares := {
+		                 Square empty.
+		                 Square empty.
+		                 (MoonWalkSquare withBackwardsPush: 4).
+		                 Square empty.
+		                 Square empty.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
+
+	aBoard := Board
+		          populatedOf: aSetOfSquares
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2').
+
+	aDeckOfCards := {
+		                Card reversePolarityWithoutOwner.
+		                Card reversePolarityWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 3.
+	aGame play.
+	aGame play.
+	aGame play.
+	self assert: (aGame positionOf: 'Player 1') equals: 1.
+	self assert: (aGame positionOf: 'Player 2') equals: 5
+]
+
+{ #category : 'tests' }
+GameTest >> testC59WhenAReversePolarityCardIsPlayedForADrawCardSquareThenWhenTriggeredEveryOtherShipDrawsACard [
+
+	| aGame dice aSetOfSquares shipNames aBoard aDeckOfCards |
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 1 )).
+	aSetOfSquares := {
+		                 Square empty.
+		                 DrawCardSquare withDefaultDeck.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
+
+	aBoard := Board
+		          populatedOf: aSetOfSquares
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card reversePolarityWithoutOwner.
+		                Card reversePolarityWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 2.
+	aGame play.
+
+	self assert: (aGame cardsInHandOf: 'Player 1') size equals: 1.
+	self assert: (aGame cardsInHandOf: 'Player 2') size equals: 3.
+	self assert: (aGame cardsInHandOf: 'Player 3') size equals: 3
+]
+
+{ #category : 'tests' }
+GameTest >> testC60WhenAReversePolarityCardIsPlayedForAWormHoleSquareAndAShipLandsInTheEntranceThenOtherShipsMoveToTheOtherEnd [
+
+	| aGame dice aSetOfSquares shipNames aBoard aDeckOfCards |
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 1 )).
+	aSetOfSquares := {
+		                 Square empty.
+		                 (WormHoleSquare withEntranceAt: 2 andExitAt: 5).
+		                 Square empty.
+		                 Square empty.
+		                 (WormHoleSquare withEntranceAt: 2 andExitAt: 5).
+		                 Square empty } asOrderedCollection.
+
+	aBoard := Board
+		          populatedOf: aSetOfSquares
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card reversePolarityWithoutOwner.
+		                Card reversePolarityWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 2.
+	aGame play.
+	self assert: (aGame positionOf: 'Player 1') equals: 2.
+	self assert: (aGame positionOf: 'Player 2') equals: 5.
+	self assert: (aGame positionOf: 'Player 3') equals: 5
+]
+
+{ #category : 'tests' }
+GameTest >> testC61WhenAReversePolarityCardIsPlayedForAWormHoleSquareAndAShipLandsInTheExitThenOtherShipsMoveToTheOtherEnd [
+
+	| aGame dice aSetOfSquares shipNames aBoard aDeckOfCards |
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 4 )).
+	aSetOfSquares := {
+		                 Square empty.
+		                 (WormHoleSquare withEntranceAt: 2 andExitAt: 5).
+		                 Square empty.
+		                 Square empty.
+		                 (WormHoleSquare withEntranceAt: 2 andExitAt: 5).
+		                 Square empty } asOrderedCollection.
+
+	aBoard := Board
+		          populatedOf: aSetOfSquares
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card reversePolarityWithoutOwner.
+		                Card reversePolarityWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 5.
+	aGame play.
+	self assert: (aGame positionOf: 'Player 1') equals: 5.
+	self assert: (aGame positionOf: 'Player 2') equals: 2.
+	self assert: (aGame positionOf: 'Player 3') equals: 2
+]
+
+{ #category : 'tests' }
+GameTest >> testC62WhenAReversePolarityIsPlayedForAnEmptySquareThenItRemainsTheSame [
+
+	| aGame dice aSetOfSquares shipNames aBoard aDeckOfCards |
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 1 )).
+	aSetOfSquares := {
+		                 Square empty .
+		                 Square empty.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
+
+	aBoard := Board
+		          populatedOf: aSetOfSquares
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' 'Player 2' 'Player 3' ).
+
+	aDeckOfCards := {
+		                Card reversePolarityWithoutOwner.
+		                Card reversePolarityWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner.
+		                Card speedWithoutOwner } asOrderedCollection.
+
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 2.
+	aGame play.
+	self assert: (aGame positionOf: 'Player 1') equals: 2.
+
+]
+
+{ #category : 'tests' }
+GameTest >> testC63WhenAReversePolarityIsPlayedTwiceForTheSameSquareThenTheSquareReturnsToItsOriginalEffect [
+
+	| aGame dice aSetOfSquares shipNames aBoard aDeckOfCards |
+	dice := OrderedCollection new.
+	dice add: (LoadedDie withSetNumbers: #( 1 )).
+	aSetOfSquares := {
+		                 Square empty.
+		                 AtomicBombSquare withDefaultPolarity.
+		                 Square empty.
+		                 Square empty } asOrderedCollection.
+
+	aBoard := Board
+		          populatedOf: aSetOfSquares
+		          withTotalDistanceOf: (Parsec amount: 50)
+		          toBePlayedOnRolling: dice.
+
+	shipNames := #( 'Player 1' ).
+
+	aDeckOfCards := {
+		                Card reversePolarityWithoutOwner.
+		                Card reversePolarityWithoutOwner }
+		                asOrderedCollection.
+
+	aGame := Game
+		         gamePlayedBy: shipNames
+		         on: aBoard
+		         toPlayFor: 2
+		         drawingFrom: aDeckOfCards.
+	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 2.
+	aGame throw: 'Reverse Polarity Card' from: 'Player 1' pointingTo: 2.
+	aGame play.
+
+	self assert: (aGame positionOf: 'Player 1') equals: 1
 ]

@@ -50,6 +50,18 @@ Ship >> drawCard: aCard [
 	cardsInHand add: aCard
 ]
 
+{ #category : 'accessing' }
+Ship >> getCardFromHand: aCardName [
+
+	| card |
+	(cardsInHand anySatisfy: [ :aCard | aCard hasAsEffect: aCardName ])
+		ifFalse: [ Error signal: 'The ship does not have this card' ].
+		
+	card := cardsInHand detect: [ :aCard | aCard hasAsEffect: aCardName ].
+	
+	^ card 
+]
+
 { #category : 'actions' }
 Ship >> goToFirstSquare [
 
@@ -137,10 +149,8 @@ Ship >> shields [
 Ship >> throw: aCardName whenTurnOf: aShip [
 
 	| card cardToBePlayed |
-	(cardsInHand anySatisfy: [ :aCard | aCard hasAsEffect: aCardName ])
-		ifFalse: [ Error signal: 'The ship does not have this card' ].
-	card := cardsInHand detect: [ :aCard |
-		        aCard hasAsEffect: aCardName ].
+	
+	card := self getCardFromHand: aCardName.
 
 	card
 		checkForTurnRequierementwhen: self
@@ -159,10 +169,8 @@ Ship >> throw: aCardName whenTurnOf: aShip [
 Ship >> throw: aCardName whenTurnOf: aShip to: aTargetShip [
 
 	| card cardToBePlayed |
-	(cardsInHand anySatisfy: [ :aCard | aCard hasAsEffect: aCardName ])
-		ifFalse: [ Error signal: 'The ship does not have this card' ].
-	card := cardsInHand detect: [ :aCard |
-		        aCard hasAsEffect: aCardName ].
+	
+	card := self getCardFromHand: aCardName.
 
 	card
 		checkForTurnRequierementwhen: self
@@ -179,15 +187,17 @@ Ship >> throw: aCardName whenTurnOf: aShip to: aTargetShip [
 Ship >> throw: aCardName whenTurnOf: aShip to: aTargetShip whoPlayed: aTargetCardName [
 
 	| card cardToBePlayed |
-	(cardsInHand anySatisfy: [ :aCard | aCard hasAsEffect: aCardName ])
-		ifFalse: [ Error signal: 'The ship does not have this card' ].
-	card := cardsInHand detect: [ :aCard |
-		        aCard hasAsEffect: aCardName ].
+	card := self getCardFromHand: aCardName.
 
-	card checkForTurnRequierementwhen: self playsACardDuringTheTurnOf: aShip.
-	
-	cardToBePlayed := card playedBy: self targetedTo: aTargetShip whoPlayed: aTargetCardName.
-	
+	card
+		checkForTurnRequierementwhen: self
+		playsACardDuringTheTurnOf: aShip.
+
+	cardToBePlayed := card
+		                  playedBy: self
+		                  targetedTo: aTargetShip
+		                  whoPlayed: aTargetCardName.
+
 	cardsInHand remove: card.
 
 	^ cardToBePlayed

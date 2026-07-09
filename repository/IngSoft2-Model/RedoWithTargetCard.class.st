@@ -24,7 +24,7 @@ RedoWithTargetCard >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
 	aGame applyRedoTo: aTargetShip from: owner whoPlayed: targetCardName
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'initialization' }
 RedoWithTargetCard >> intializeTargetedTo: aTargetShip whoPlayed: aTargetCardName [
 
 

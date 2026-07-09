@@ -23,19 +23,19 @@ CancellationEffect >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
 	aGame applyCancellationTo: targetShip whoPlayed: targetCardName
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 CancellationEffect >> checkIfTargetCardNeeded [
 
 	Error signal: 'Cancellation Card requiers a target card.'
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 CancellationEffect >> checkIfTargetShipNeeded [
 
 	Error signal: 'Cancellation Card requiers a target ship.'
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 CancellationEffect >> intializeTargetedTo: aTargetShip whoPlayed: aTargetCardName [
 
 	targetShip := aTargetShip.
@@ -48,13 +48,13 @@ CancellationEffect >> isCalled: anEffectName [
 	^ 'Cancellation Card' = anEffectName
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 CancellationEffect >> targetTo: aTargetShip [
 
 	Error signal:'Cancellation Card requiers a target card.'
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 CancellationEffect >> targetTo: aTargetShip whoPlayed: aTargetCardName [
 
 	^ self class targetTo: aTargetShip whoPlayed: aTargetCardName

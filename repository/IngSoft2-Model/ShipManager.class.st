@@ -59,7 +59,8 @@ ShipManager >> checkBattles: aShip on: aBoard [
 
 	otherShips do: [ :anotherShip |
 		(self checkIfShouldFight: aShip with: anotherShip ) ifTrue: [
-			anotherShipWithMercenaries := self getMercenariesOf: anotherShip.
+			aShipWithMercenaries := self getMercenariesOf: aShip battlingAgainst: anotherShip .
+			anotherShipWithMercenaries := self getMercenariesOf: anotherShip battlingAgainst: aShip.
 			loserShip := self battle: aShipWithMercenaries with: anotherShipWithMercenaries on: aBoard.
 			loserShipWithMercenaries := self getMercenariesOf: loserShip.
 			loserShipWithMercenaries do: [ :ship | ship breakAShield ].
@@ -85,6 +86,18 @@ ShipManager >> getMercenariesOf: aShip [
 	shipWithMercenaries add: aShip.
 	activeCards do: [ :aCard |
 		aCard applyMercenaryEffectFor: aShip in: shipWithMercenaries ].
+
+	^ shipWithMercenaries
+]
+
+{ #category : 'accessing' }
+ShipManager >> getMercenariesOf: aShip battlingAgainst: antherShip [
+
+	| shipWithMercenaries |
+	shipWithMercenaries := OrderedCollection new.
+	shipWithMercenaries add: aShip.
+	activeCards do: [ :aCard |
+		aCard applyMercenaryEffectFor: aShip battling: antherShip in: shipWithMercenaries].
 
 	^ shipWithMercenaries
 ]

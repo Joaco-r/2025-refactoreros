@@ -1,3 +1,6 @@
+"
+An effect that can be added to a card so that it can be applied in game when said card is played.
+"
 Class {
 	#name : 'CardEffect',
 	#superclass : 'Object',
@@ -15,24 +18,30 @@ CardEffect >> applyPlayedEffectIn: aGame from: owner to: aTargetShip [
 ]
 
 { #category : 'actions' }
+CardEffect >> applyReversedThrowEffectFor: aShip [
+
+	^ 0
+]
+
+{ #category : 'actions' }
 CardEffect >> applyThrowEffectFor: aShip [
 	^ 0
 	
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 CardEffect >> checkForTurnRequierementwhen: aShip playsACardDuringTheTurnOf: anotherShip [
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 CardEffect >> checkIfTargetCardNeeded [
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'testing' }
 CardEffect >> checkIfTargetShipNeeded [
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'actions' }
 CardEffect >> findCardToBeReplayed: activeCards [
 	^ (activeCards at: 1 )
 ]
